@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioAutomacaoAPI", "DesafioAutomacaoAPI.csproj", "{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EEE80CF1-9B0D-4C3F-836C-A1D6B3EC8AB3}
+	EndGlobalSection
+EndGlobal
