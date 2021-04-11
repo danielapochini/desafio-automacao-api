@@ -1,5 +1,7 @@
 ﻿using DesafioAutomacaoAPI.Base;
-using DesafioAutomacaoAPI.Model.Users; 
+using DesafioAutomacaoAPI.Model.Users;
+using DesafioAutomacaoAPI.Utils.Entities;
+using DesafioAutomacaoAPI.Utils.Queries.Users;
 using DesafioAutomacaoAPI.Utils.Settings; 
 using RestSharp;
 using System;
@@ -15,7 +17,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
 
         [Fact]
         public void TestGetMyUserInfo()
-        {
+        { 
             string urlGetUserInfo = "api/rest/users/me";
             
             IRestResponse<UsersModel> obterDados = restManager.PerformGetRequest<UsersModel>(urlGetUserInfo);
@@ -23,6 +25,9 @@ namespace DesafioAutomacaoAPI.Tests.Users
             Assert.Equal(200, (int)obterDados.StatusCode);
             Assert.Equal("administrator", obterDados.Data.Name);
             Assert.Equal("administrator", obterDados.Data.AccessLevel.Name);
+ 
+            var resultadoListarUsers = UsersQueries.ListarTodosUsuarios();
+            Assert.Equal(resultadoListarUsers.Username, obterDados.Data.Name);
         }
     }
 }

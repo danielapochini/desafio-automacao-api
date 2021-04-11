@@ -10,10 +10,13 @@ namespace DesafioAutomacaoAPI.Utils.Settings
         public Uri BaseUrl { get; set; }
         public string Token { get; set; }
 
+        public string ConnectionString { get; set; }
+
         public AppSettings()
         {
             BaseUrl = new Uri(ReturnParamAppSettings("URL_BASE"));
             Token = ReturnParamAppSettings("TOKEN");
+            ConnectionString = ReturnParamAppSettings("CONNECTION_STRING");
         }
 
         public static string ReturnParamAppSettings(string nameParam)
