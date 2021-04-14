@@ -7,17 +7,19 @@ using System.Text;
 namespace DesafioAutomacaoAPI.Utils.Settings
 {
     public class Database
-    { 
+    {
         public static IEnumerable<T> ExecuteDbCommand<T>(string query)
         {
-            Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
-
             AppSettings appSettings = new AppSettings();
             var connectionString = appSettings.ConnectionString;
 
-            using var connection = new MySqlConnection(connectionString); 
-            
-            return connection.Query<T>(query); 
+            //utilizando "using" para abrir e fechar a conexao
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
+
+                return connection.Query<T>(query);
+            };  
         } 
     }
 }

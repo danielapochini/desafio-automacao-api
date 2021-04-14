@@ -2,7 +2,10 @@
 using DesafioAutomacaoAPI.Model.Users;
 using DesafioAutomacaoAPI.Utils.Entities;
 using DesafioAutomacaoAPI.Utils.Queries.Users;
-using DesafioAutomacaoAPI.Utils.Settings; 
+using DesafioAutomacaoAPI.Utils.Settings;
+using FluentAssertions;
+using System.Linq;
+using FluentAssertions.Execution;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -19,15 +22,20 @@ namespace DesafioAutomacaoAPI.Tests.Users
         public void TestGetMyUserInfo()
         { 
             string urlGetUserInfo = "api/rest/users/me";
-            
-            IRestResponse<UsersModel> obterDados = restManager.PerformGetRequest<UsersModel>(urlGetUserInfo);
              
-            Assert.Equal(200, (int)obterDados.StatusCode);
-            Assert.Equal("administrator", obterDados.Data.Name);
-            Assert.Equal("administrator", obterDados.Data.AccessLevel.Name);
- 
-            var resultadoListarUsers = UsersQueries.ListarTodosUsuarios();
-            Assert.Equal(resultadoListarUsers.Username, obterDados.Data.Name);
+            IRestResponse<UsersModel> obterDados = restManager.PerformGetRequest<UsersModel>(urlGetUserInfo);             
+            var resultadoListarUsers = UsersQueries.ListarInformacoesMeuUsuario(obterDados.Data.Name);
+             
+            //usando fluent validations para realizar asserts multiplos 
+            using (new AssertionScope())
+            {
+                obterDados.StatusCode.Should().Be(200); 
+                resultadoListarUsers.Id.Should().Be(obterDados.Data.Id);
+                resultadoListarUsers.UserName.Should().Be(obterDados.Data.Name);
+                resultadoListarUsers.RealName.Should().Be(obterDados.Data.RealName);
+                resultadoListarUsers.Email.Should().Be(obterDados.Data.Email);
+                resultadoListarUsers.AccessLevel.Should().Be(obterDados.Data.AccessLevel.Id);
+            }
         }
     }
 }
