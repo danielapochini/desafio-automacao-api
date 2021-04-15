@@ -23,8 +23,8 @@ namespace DesafioAutomacaoAPI.Tests.Users
         { 
             string urlGetUserInfo = "api/rest/users/me";
              
-            IRestResponse<UsersModel> obterDados = restManager.PerformGetRequest<UsersModel>(urlGetUserInfo);             
-            var resultadoListarUsers = UsersQueries.ListarInformacoesMeuUsuario(obterDados.Data.Name);
+            IRestResponse<UsersResponseAttributes> obterDados = restManager.PerformGetRequest<UsersResponseAttributes>(urlGetUserInfo);             
+            var resultadoListarUsers = UsersQueries.ListarInformacoesUsuario(obterDados.Data.Name);
              
             //usando fluent validations para realizar asserts multiplos 
             using (new AssertionScope())

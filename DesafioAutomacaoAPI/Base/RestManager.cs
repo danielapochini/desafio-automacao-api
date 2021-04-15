@@ -1,6 +1,9 @@
 ﻿using DesafioAutomacaoAPI.Utils.Settings;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using RestSharp;
+using RestSharp.Serializers.NewtonsoftJson;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,14 +17,33 @@ namespace DesafioAutomacaoAPI.Base
         private readonly AppSettings AppSettings = new AppSettings();
 
         public RestManager()
-        {   
-            BasicHeaderAuth();
+        {
+            BasicJsonSerializerConfig();
+            HeaderAuth();
         }
          
 
-        private void BasicHeaderAuth()
+        private void BasicJsonSerializerConfig()
         { 
-            RestClient.AddDefaultHeader("Authorization", AppSettings.Token); 
+            //utilizando nugget package de serializer json
+            RestClient.UseNewtonsoftJson();
+
+            //setando a configuração do serializador json 
+            //para aceitar o modelo de nome dos campos sendo "snake_case"
+
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy()
+                }
+            };
+             
+        }
+
+        private void HeaderAuth()
+        {
+            RestClient.AddDefaultHeader("Authorization", AppSettings.Token);
         }
           
         private IRestRequest GetRestRequest(string uri, Method method)
@@ -67,14 +89,26 @@ namespace DesafioAutomacaoAPI.Base
             return restResponse;
         }
 
-        public IRestResponse<T> PerformGetRequest<T>(string url) 
+        public IRestResponse<TResponse> PerformGetRequest<TResponse>(string url) 
         {
             IRestRequest restRequest = GetRestRequest(url, Method.GET);
-            IRestResponse<T> restResponse = SendRequest<T>(restRequest);
+            IRestResponse<TResponse> restResponse = SendRequest<TResponse>(restRequest);
 
             return restResponse;
         }
          
+        public IRestResponse<TResponse> PerformPostRequest<TResponse, TBody>(string url, TBody body)
+        {
+            var restRequest = GetRestRequest(url, body, Method.POST); 
 
+            return SendRequest<TResponse>(restRequest);
+        }
+
+        public IRestResponse<TResponse> PerformPostRequest<TResponse, TBody>(string url, object body)
+        {
+            var restRequest = GetRestRequest(url, body, Method.POST);
+
+            return SendRequest<TResponse>(restRequest);
+        }
     }
 }
