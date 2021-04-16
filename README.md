@@ -30,6 +30,13 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 | ------ | ------ | 
  
  ## Metas
- - [x]    5) Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares).
- 
+ - [x]  5) Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares).
  > Os métodos `IsValidAddress()` e `IsValidUsername()` gerados na classe `RegexHelper` retornam através do assert `IsMatch` se o parâmetro passado atende ao Regex. Testes criados na classe `CriarUsuarioRegexTest` utilizam estes métodos.
+ - [x] 10) Executar testes em paralelo. Pelo menos duas threads (25 testes cada).
+ > O arquivo `xunit.runner.json` na raiz do projeto está configurado para realizar a execução dos testes em paralelo e em duas threads.
+
+
+## Referências
+- [Configuration Files XUnit](https://xunit.net/docs/configuration-files): Documentação de configuração do runner do XUnit, utilizado para setar os testes em paralelo e em threads.
+- [Default Config MantisBT](https://fossies.org/linux/mantisbt/config_defaults_inc.php): Documentação de configuração do MantisBT, utilizado para entender o padrão de e-mail e username válidos.
+
