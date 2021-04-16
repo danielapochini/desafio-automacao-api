@@ -1,4 +1,5 @@
 ﻿using DesafioAutomacaoAPI.Base;
+using DesafioAutomacaoAPI.Model;
 using DesafioAutomacaoAPI.Model.Request.Users;
 using DesafioAutomacaoAPI.Model.Users;
 using DesafioAutomacaoAPI.Utils;
@@ -20,13 +21,13 @@ namespace DesafioAutomacaoAPI.Tests.Users
         private readonly RestManager restManager = new RestManager();
 
         [Fact]
-        public void CriarUserEmaiValidoRegex()
+        public void CriarUserInvalidoUsernameRegex()
         {
             string urlPostUsuario = "api/rest/users/";
 
             var userBodyRequest = new UsersRequest
             {
-                Username = GerarDadosFake.GerarNomeDeUsuario(),
+                Username = "!testeusername",
                 Password = GerarDadosFake.GerarSenha(),
                 RealName = GerarDadosFake.GerarNome(),
                 Email = GerarDadosFake.GerarEmail(),
@@ -38,32 +39,26 @@ namespace DesafioAutomacaoAPI.Tests.Users
                 Protected = false
             };
 
-            var validatorEmail = RegexHelper.IsValidAddress(userBodyRequest.Email);
+            var validatorUsername = RegexHelper.IsValidUsername(userBodyRequest.Username);
 
-            if (validatorEmail == true)
+            if (validatorUsername == false)
             {
-                var criarUsuarioRequest = restManager.PerformPostRequest<UserResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
-                var resultadoListarUsers = UsersQueries.ListarInformacoesUsuario(criarUsuarioRequest.Data.User.Name);
+                var criarUsuarioRequest = restManager.PerformPostRequest<ErrorMessageResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
 
                 using (new AssertionScope())
                 {
-                    criarUsuarioRequest.StatusCode.Should().Be(201);
-                    resultadoListarUsers.Id.Should().Be(criarUsuarioRequest.Data.User.Id);
-                    resultadoListarUsers.UserName.Should().Be(criarUsuarioRequest.Data.User.Name);
-                    resultadoListarUsers.RealName.Should().Be(criarUsuarioRequest.Data.User.RealName);
-                    resultadoListarUsers.AccessLevel.Should().Be(criarUsuarioRequest.Data.User.AccessLevel.Id);
-                    resultadoListarUsers.Email.Should().Be(criarUsuarioRequest.Data.User.Email);
+                    criarUsuarioRequest.StatusCode.Should().Be(400);
+                    criarUsuarioRequest.Data.Message.Should().Be($"Invalid username '{userBodyRequest.Username}'");
+                    criarUsuarioRequest.Data.Code.Should().Be(805);
+                    criarUsuarioRequest.Data.Localized.Should().Be("The username is invalid. Usernames may only contain Latin letters, numbers, spaces, hyphens, dots, plus signs and underscores.");
                 }
             }
-            else
-            {
-                Assert.False(validatorEmail, "E-mail não é valido!");
-            }
+            
 
 
         }
         [Fact]
-        public void CriarUserEmailnvalidoRegex()
+        public void CriarUserInvalidoEmailRegex()
         {
             string urlPostUsuario = "api/rest/users/";
 
@@ -72,7 +67,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
                 Username = GerarDadosFake.GerarNomeDeUsuario(),
                 Password = GerarDadosFake.GerarSenha(),
                 RealName = GerarDadosFake.GerarNome(),
-                Email = "email@valido",
+                Email = "teste@@com",
                 AccessLevel = new AccessLevelRequest
                 {
                     Name = "updater"
@@ -83,25 +78,18 @@ namespace DesafioAutomacaoAPI.Tests.Users
 
             var validatorEmail = RegexHelper.IsValidAddress(userBodyRequest.Email);
 
-            if (validatorEmail == true)
+            if (validatorEmail == false)
             {
-                var criarUsuarioRequest = restManager.PerformPostRequest<UserResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
-                var resultadoListarUsers = UsersQueries.ListarInformacoesUsuario(criarUsuarioRequest.Data.User.Name);
+                var criarUsuarioRequest = restManager.PerformPostRequest<ErrorMessageResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
 
                 using (new AssertionScope())
                 {
-                    criarUsuarioRequest.StatusCode.Should().Be(201);
-                    resultadoListarUsers.Id.Should().Be(criarUsuarioRequest.Data.User.Id);
-                    resultadoListarUsers.UserName.Should().Be(criarUsuarioRequest.Data.User.Name);
-                    resultadoListarUsers.RealName.Should().Be(criarUsuarioRequest.Data.User.RealName);
-                    resultadoListarUsers.AccessLevel.Should().Be(criarUsuarioRequest.Data.User.AccessLevel.Id);
-                    resultadoListarUsers.Email.Should().Be(criarUsuarioRequest.Data.User.Email);
+                    criarUsuarioRequest.StatusCode.Should().Be(400);
+                    criarUsuarioRequest.Data.Message.Should().Be($"Email '{userBodyRequest.Email}' is invalid.");
+                    criarUsuarioRequest.Data.Code.Should().Be(1200);
+                    criarUsuarioRequest.Data.Localized.Should().Be("Invalid e-mail address.");
                 }
-            }
-            else
-            {
-                Assert.False(validatorEmail, "E-mail não é valido!");
-            }
+            } 
         }
     }
 }
