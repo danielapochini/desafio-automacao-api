@@ -14,16 +14,16 @@ using Xunit;
 
 namespace DesafioAutomacaoAPI.Tests.Users
 { 
-    public class GetMyUserInfo  
+    public class ObterInfosMeuUsuarioTest  
     {
         private readonly RestManager restManager = new RestManager();
 
         [Fact]
-        public void TestGetMyUserInfo()
+        public void ObterMyUserInfo()
         { 
             string urlGetUserInfo = "api/rest/users/me";
              
-            IRestResponse<UsersResponseAttributes> obterDados = restManager.PerformGetRequest<UsersResponseAttributes>(urlGetUserInfo);             
+            var obterDados = restManager.PerformGetRequest<UsersResponseAttributes>(urlGetUserInfo);             
             var resultadoListarUsers = UsersQueries.ListarInformacoesUsuario(obterDados.Data.Name);
              
             //usando fluent validations para realizar asserts multiplos 
