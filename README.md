@@ -30,6 +30,8 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 | ------ | ------ | 
  
  ## Metas
+ - [x]  4) O projeto deve tratar autenticação.
+ > O token para utilização da API é gerado pelo usuário administrador no painel `Tokens API` em sua conta e este Token é passado no Header da requisição, conforme a documentação da [API Mantis](https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#intro)
  - [x]  5) Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares).
  > Os métodos `IsValidAddress()` e `IsValidUsername()` gerados na classe `RegexHelper` retornam através do assert `IsMatch` se o parâmetro passado atende ao Regex. Testes criados na classe `CriarUsuarioRegexTest` utilizam estes métodos.
  - [x] 10) Executar testes em paralelo. Pelo menos duas threads (25 testes cada).
