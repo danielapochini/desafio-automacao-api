@@ -82,45 +82,5 @@ namespace DesafioAutomacaoAPI.Tests.Users
             } 
         }
 
-        [Fact]
-        public void CriarUserEmailnvalido()
-        {
-            string urlPostUsuario = "api/rest/users/";
-
-            var userBodyRequest = new UsersRequest
-            {
-                Username = GerarDadosFake.GerarNomeDeUsuario(),
-                Password = GerarDadosFake.GerarSenha(),
-                RealName = GerarDadosFake.GerarNome(),
-                Email = "email@valido",
-                AccessLevel = new AccessLevelRequest
-                {
-                    Name = "aleatorio"
-                },
-                Enabled = true,
-                Protected = false
-            };
-
-            var validatorEmail = RegexHelper.IsValidAddress(userBodyRequest.Email);
-
-            if (validatorEmail == true)
-            {
-                var criarUsuarioRequest = restManager.PerformPostRequest<ErrorMessageResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
-                 
-                using (new AssertionScope())
-                {
-                    criarUsuarioRequest.StatusCode.Should().Be(201);
-                    criarUsuarioRequest.Data.Message.Should().Be("Invalid access level");
-                    criarUsuarioRequest.Data.Code.Should().Be(29);
-                    criarUsuarioRequest.Data.Localized.Should().Be("Invalid value for 'access_level'");
-                }
-            } 
-            else 
-            {
-                Console.WriteLine("E-mail não é valido.");
-            }
-
-           
-        }
     }
 }
