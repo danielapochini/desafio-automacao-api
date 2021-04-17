@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "DesafioAutomacaoAPI:QA": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "AMBIENTE_API": "QA"
+      }
+    },
+    "DesafioAutomacaoAPI:HML": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "AMBIENTE_API": "HML"
+      }
+    }
+  }
+}
