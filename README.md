@@ -34,6 +34,8 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
  > O token para utilização da API é gerado pelo usuário administrador no painel `Tokens API` em sua conta e este Token é passado no Header da requisição, conforme a documentação da [API Mantis](https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#intro)
  - [x]  5) Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares).
  > Os métodos `IsValidAddress()` e `IsValidUsername()` gerados na classe `RegexHelper` retornam através do assert `IsMatch` se o parâmetro passado atende ao Regex. Testes criados na classe `CriarUsuarioRegexTest` utilizam estes métodos.
+ - [x] 8) Implementar pelo menos dois ambientes (desenvolvimento / homologação)
+  > Os ambientes de `DEV` e `HML` foram implementados no projeto. Há dois arquivos na raiz do projeto, `appsettings.DEV.json` e `appsettings.HML.json` que são compilados conforme o ambiente selecionado nas configurações de build.
  - [x] 10) Executar testes em paralelo. Pelo menos duas threads (25 testes cada).
  > O arquivo `xunit.runner.json` na raiz do projeto está configurado para realizar a execução dos testes em paralelo e em duas threads.
 
@@ -41,4 +43,4 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 ## Referências
 - [Configuration Files XUnit](https://xunit.net/docs/configuration-files): Documentação de configuração do runner do XUnit, utilizado para setar os testes em paralelo e em threads.
 - [Default Config MantisBT](https://fossies.org/linux/mantisbt/config_defaults_inc.php): Documentação de configuração do MantisBT, utilizado para entender o padrão de e-mail e username válidos.
-
+- [Using Environment Variables in XUnit](https://spicychillysoft.com/2019/10/03/using-environment-variables-in-xunit/): Utilização de múltiplas variáveis de ambiente no XUnit.
