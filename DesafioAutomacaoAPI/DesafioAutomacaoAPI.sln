@@ -8,17 +8,17 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		DEV|Any CPU = DEV|Any CPU
 		HML|Any CPU = HML|Any CPU
-		QA|Any CPU = QA|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.DEV|Any CPU.ActiveCfg = DEV|Any CPU
+		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.DEV|Any CPU.Build.0 = DEV|Any CPU
 		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.HML|Any CPU.ActiveCfg = HML|Any CPU
 		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.HML|Any CPU.Build.0 = HML|Any CPU
-		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.QA|Any CPU.ActiveCfg = QA|Any CPU
-		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.QA|Any CPU.Build.0 = QA|Any CPU
 		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABCC1CA4-99EA-4BE8-B22F-B93A51818BC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

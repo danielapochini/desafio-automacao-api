@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <Configurations>Debug;Release;HML;QA</Configurations>
+    <Configurations>Debug;Release;HML;QA;DEV</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,7 +35,7 @@
     <None Update="appsettings.HML.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="appsettings.QA.json">
+    <None Update="appsettings.DEV.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Properties\launchSettings.json">
