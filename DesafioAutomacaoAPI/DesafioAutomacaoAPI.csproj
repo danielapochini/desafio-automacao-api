@@ -5,9 +5,22 @@
 
     <IsPackable>false</IsPackable>
 
-    <Configurations>Debug;Release;HML;QA;DEV</Configurations>
+    <Configurations>Debug;Release;HML;DEV</Configurations>
   </PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)' == 'DEV'">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<EnvironmentName>DEV</EnvironmentName>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'HML'">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<EnvironmentName>HML</EnvironmentName>
+	</PropertyGroup>
+	
   <ItemGroup>
     <PackageReference Include="Bogus" Version="33.0.2" />
     <PackageReference Include="Dapper" Version="2.0.78" />
@@ -31,13 +44,9 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="appsettings.HML.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="appsettings.DEV.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+ 
+	
+  <ItemGroup> 
     <None Update="Properties\launchSettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -46,6 +55,14 @@
     </None>
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="appsettings.*.json" Exclude="appsettings.$(EnvironmentName).json" DependentUpon="appsettings.json" CopyToOutputDirectory="Never" />
+		<None Remove="appsettings.json" />
+		<Content Include="appsettings.$(EnvironmentName).json" DependentUpon="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+ 
+	
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
