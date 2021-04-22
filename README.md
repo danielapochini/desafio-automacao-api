@@ -7,13 +7,14 @@ Os testes serão realizados na API Rest do Mantis Bug Tracker.
 Documentação Postman: 
 - [Mantis Bug Tracker REST API](https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#intro)
 
-Foi necessário instalar o Docker e baixar a seguinte imagem:
+Foi necessário instalar a seguinte Docker Image:
  - [MantisBT bug tracker Docker image](https://github.com/okainov/mantisbt-docker)
 
 Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do MantisBT e de fácil configuração.
 
 ## Tecnologias Utilizadas 
-
+- [Docker](https://www.docker.com/) - Ferramenta para levantar containers através de imagens
+- [Jenkins](https://www.jenkins.io/) - Ferramenta para realizar a integracão contínua do projeto na pipeline
 - [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) - Linguagem utilizada para o projeto
 - [.NET 5](https://dotnet.microsoft.com/learn) - Plataforma de desenvolvimento
 - [XUnit](https://xunit.net/) - Framework .NET que auxilia na construção de testes  
@@ -38,9 +39,11 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
   > Os ambientes de `DEV` e `HML` foram implementados no projeto. Há dois arquivos na raiz do projeto, `appsettings.DEV.json` e `appsettings.HML.json` que são compilados conforme o ambiente selecionado nas configurações de build.
  - [x] 10) Executar testes em paralelo. Pelo menos duas threads (25 testes cada).
  > O arquivo `xunit.runner.json` na raiz do projeto está configurado para realizar a execução dos testes em paralelo e em duas threads.
-
+ - [x]  11) Testes deverão ser agendados pelo Jenkins, CircleCI, TFS ou outra ferramenta de CI que preferir.
+ > Os testes estão implementados na pipeline do Jenkins para o ambiente de `DEV`, o script de configuração da pipeline está disponivel na raiz do projeto.
 
 ## Referências
 - [Configuration Files XUnit](https://xunit.net/docs/configuration-files): Documentação de configuração do runner do XUnit, utilizado para setar os testes em paralelo e em threads.
 - [Default Config MantisBT](https://fossies.org/linux/mantisbt/config_defaults_inc.php): Documentação de configuração do MantisBT, utilizado para entender o padrão de e-mail e username válidos.
 - [Using Environment Variables in XUnit](https://spicychillysoft.com/2019/10/03/using-environment-variables-in-xunit/): Utilização de múltiplas variáveis de ambiente no XUnit.
+- [.NET SDK Support - Jenkins Plugin](https://plugins.jenkins.io/dotnet-sdk/): Plugin de apoio para utilização do SDK 5.0 .NET e utilzação de comandos `dotnet` na pipeline 
