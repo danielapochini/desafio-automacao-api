@@ -23,9 +23,9 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [FluentAssertions](https://fluentassertions.com/introduction) - Extensão de métodos de Assert de forma mais clara e natural
 - [Dapper](https://www.learndapper.com/) - (Object Relational Mapping) voltado para o desenvolvimento .NET, ou seja, auxilia no mapeamento de objetos a partir de consulta SQL.
 - [Boggus](https://github.com/bchavez/Bogus) - Biblioteca para gerar dados fakes 
- 
-## Arquitetura
+- [Allure Reports](https://github.com/allure-framework/allure-csharp) - Biblioteca para gerar relatórios de testes
 
+## Arquitetura
  
 | Diretório | Funcionalidade |
 | ------ | ------ | 
@@ -35,6 +35,8 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
  > O token para utilização da API é gerado pelo usuário administrador no painel `Tokens API` em sua conta e este Token é passado no Header da requisição, conforme a documentação da [API Mantis](https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#intro)
  - [x]  5) Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares).
  > Os métodos `IsValidAddress()` e `IsValidUsername()` gerados na classe `RegexHelper` retornam através do assert `IsMatch` se o parâmetro passado atende ao Regex. Testes criados na classe `CriarUsuarioRegexTest` utilizam estes métodos.
+ - [x]  7) O projeto deverá gerar um relatório de testes automaticamente.
+ > Após a execução do build na pipeline, o relatório de teste é gerado automaticamente utilizando o plugin de `Allure Reports`, na pasta `allure-report` na raiz do workspace do Jenkins.
  - [x] 8) Implementar pelo menos dois ambientes (desenvolvimento / homologação)
   > Os ambientes de `DEV` e `HML` foram implementados no projeto. Há dois arquivos na raiz do projeto, `appsettings.DEV.json` e `appsettings.HML.json` que são compilados conforme o ambiente selecionado nas configurações de build.
  - [x] 10) Executar testes em paralelo. Pelo menos duas threads (25 testes cada).
@@ -47,3 +49,4 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [Default Config MantisBT](https://fossies.org/linux/mantisbt/config_defaults_inc.php): Documentação de configuração do MantisBT, utilizado para entender o padrão de e-mail e username válidos.
 - [Using Environment Variables in XUnit](https://spicychillysoft.com/2019/10/03/using-environment-variables-in-xunit/): Utilização de múltiplas variáveis de ambiente no XUnit.
 - [.NET SDK Support - Jenkins Plugin](https://plugins.jenkins.io/dotnet-sdk/): Plugin de apoio para utilização do SDK 5.0 .NET e utilzação de comandos `dotnet` na pipeline 
+- [Allure XUnit](https://github.com/TinkoffCreditSystems/Allure.XUnit): Adapter do Allure Reports para execução no XUnit
