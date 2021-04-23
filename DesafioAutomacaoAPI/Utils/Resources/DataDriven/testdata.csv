@@ -1,0 +1,4 @@
+﻿Username,Password,RealName,Email,AccessLevelRequest.Name,Enabled,Protected
+test.updater,123456,Usuario Nivel Updater,email01@valid.com,updater,true,false
+test.reporter,654321,Usuario Nivel Reporter,email02@valid.com,reporter,true,false
+test.developer,654123,Usuario Nivel Developer,email03@valid.com,developer,true,false

@@ -29,9 +29,9 @@ namespace DesafioAutomacaoAPI.Tests.Users
             var userBodyRequest = new UsersRequest
             {
                 Username = "!testeusername",
-                Password = GerarDadosFake.GerarSenha(),
-                RealName = GerarDadosFake.GerarNome(),
-                Email = GerarDadosFake.GerarEmail(),
+                Password = DadosFakeHelper.GerarSenha(),
+                RealName = DadosFakeHelper.GerarNome(),
+                Email = DadosFakeHelper.GerarEmail(),
                 AccessLevel = new AccessLevelRequest
                 {
                     Name = "updater"
@@ -65,9 +65,9 @@ namespace DesafioAutomacaoAPI.Tests.Users
 
             var userBodyRequest = new UsersRequest
             {
-                Username = GerarDadosFake.GerarNomeDeUsuario(),
-                Password = GerarDadosFake.GerarSenha(),
-                RealName = GerarDadosFake.GerarNome(),
+                Username = DadosFakeHelper.GerarNomeDeUsuario(),
+                Password = DadosFakeHelper.GerarSenha(),
+                RealName = DadosFakeHelper.GerarNome(),
                 Email = "teste@@com",
                 AccessLevel = new AccessLevelRequest
                 {

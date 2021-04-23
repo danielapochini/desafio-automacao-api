@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DesafioAutomacaoAPI.Utils
 {
-    public class GerarDadosFake
+    public class DadosFakeHelper
     {
         public static string GerarNome()
         {
