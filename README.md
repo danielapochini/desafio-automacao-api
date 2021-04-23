@@ -50,3 +50,4 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [Using Environment Variables in XUnit](https://spicychillysoft.com/2019/10/03/using-environment-variables-in-xunit/): Utilização de múltiplas variáveis de ambiente no XUnit.
 - [.NET SDK Support - Jenkins Plugin](https://plugins.jenkins.io/dotnet-sdk/): Plugin de apoio para utilização do SDK 5.0 .NET e utilzação de comandos `dotnet` na pipeline 
 - [Allure XUnit](https://github.com/TinkoffCreditSystems/Allure.XUnit): Adapter do Allure Reports para execução no XUnit
+- [Allure Plugin Jenkins](https://docs.qameta.io/allure/#_jenkins): Documentação de configuração do Allure Reports para execução no Jenkins
