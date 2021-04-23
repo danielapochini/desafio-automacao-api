@@ -1,7 +1,7 @@
 # Desafio de Automação API Rest - Base2 
   
 Projeto realizado para atingir as metas propostas no Desafio API: API Rest da Base2.
-## SUT (Software Under Testing)
+## SUT (Software Under Test)
 Os testes serão realizados na API Rest do Mantis Bug Tracker.  
 
 Documentação Postman: 
