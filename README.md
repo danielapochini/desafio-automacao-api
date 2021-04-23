@@ -31,6 +31,8 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 | ------ | ------ | 
  
  ## Metas
+ - [x]  2) Alguns scripts devem ler dados de uma planilha Excel para implementar Data-Driven.
+ > A classe de teste `Users/CriarUsuarioDataDrivenTest.cs` está realizando a leitura do arquivo .CSV que está no caminho `Utils/Resources/DataDriven/`
  - [x]  4) O projeto deve tratar autenticação.
  > O token para utilização da API é gerado pelo usuário administrador no painel `Tokens API` em sua conta e este Token é passado no Header da requisição, conforme a documentação da [API Mantis](https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#intro)
  - [x]  5) Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares).
@@ -51,4 +53,5 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [.NET SDK Support - Jenkins Plugin](https://plugins.jenkins.io/dotnet-sdk/): Plugin de apoio para utilização do SDK 5.0 .NET e utilzação de comandos `dotnet` na pipeline 
 - [Allure XUnit](https://github.com/TinkoffCreditSystems/Allure.XUnit): Adapter do Allure Reports para execução no XUnit
 - [Allure Plugin Jenkins](https://docs.qameta.io/allure/#_jenkins): Documentação de configuração do Allure Reports para execução no Jenkins
-- [Triggering a Jenkins build on push using GitHub webhooks](https://faun.pub/triggering-jenkins-build-on-push-using-github-webhooks-52d4361542d4) / [Jenkins Tutorial: Configure (SCM) Github Triggers and Git Polling using Ngrok](https://www.cloudbees.com/blog/jenkins-tutorial-configure-scm-github-triggers-and-git-polling-using-ngrok) - Configuração do para que o build do Jenkins realize um trigger a cada push no repositório do projeto.
+- [Triggering a Jenkins build on push using GitHub webhooks](https://faun.pub/triggering-jenkins-build-on-push-using-github-webhooks-52d4361542d4) / [Jenkins Tutorial: Configure (SCM) Github Triggers and Git Polling using Ngrok](https://www.cloudbees.com/blog/jenkins-tutorial-configure-scm-github-triggers-and-git-polling-using-ngrok): Configuração para que o build do Jenkins realize um trigger a cada push no repositório do projeto.
+- [Data Driven Test in xUnit Using Custom Attribute](https://softwareautomationtest.home.blog/2019/04/07/data-driven-test-in-xunit-using-custom-attribute/): Criação de atributo personalizável para testes data driven utilizando .CSV

@@ -16,29 +16,30 @@ using Xunit;
 
 namespace DesafioAutomacaoAPI.Tests.Users
 {
-    public class CriarUsuarioTest
+    public class CriarUsuarioDataDrivenTest
     {
         private readonly RestManager restManager = new RestManager();
 
-        [AllureXunit]
-        public void CriarUserDadosValidos()
+        [AllureXunitTheory]
+        [CsvData("Utils/Resources/DataDriven/testdata.csv")]
+        public void CriarUserDadosValidos(string username, string password, string realname, string email, string name, bool enabled, bool isprotected)
         {
             string urlPostUsuario = "api/rest/users/";
 
             var userBodyRequest = new UsersRequest
             {
-                Username = DadosFakeHelper.GerarNomeDeUsuario(),
-                Password = DadosFakeHelper.GerarSenha(),
-                RealName = DadosFakeHelper.GerarNome(),
-                Email = DadosFakeHelper.GerarEmail(),
+                Username = username,
+                Password = password,
+                RealName = realname,
+                Email = email,
                 AccessLevel = new AccessLevelRequest
                 {
-                    Name = "updater"
+                    Name = name
                 },
-                Enabled = true,
-                Protected = false
+                Enabled = enabled,
+                Protected = isprotected
             };
-
+ 
             var criarUsuarioRequest = restManager.PerformPostRequest<UserResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
             var resultadoListarUsers = UsersQueries.ListarInformacoesUsuario(criarUsuarioRequest.Data.User.Name);
 
@@ -52,36 +53,6 @@ namespace DesafioAutomacaoAPI.Tests.Users
                 resultadoListarUsers.Email.Should().Be(criarUsuarioRequest.Data.User.Email);
             }
         }
-
-        [AllureXunit]
-        public void CriarUserAcessoInvalido()
-        {
-            string urlPostUsuario = "api/rest/users/";
-
-            var userBodyRequest = new UsersRequest
-            { 
-                Username = DadosFakeHelper.GerarNomeDeUsuario(),
-                Password = DadosFakeHelper.GerarSenha(),
-                RealName = DadosFakeHelper.GerarNome(),
-                Email = DadosFakeHelper.GerarEmail(),
-                AccessLevel = new AccessLevelRequest
-                {
-                    Name = "aleatorio"
-                },
-                Enabled = true,
-                Protected = false
-            };
-
-            var criarUsuarioRequest = restManager.PerformPostRequest<ErrorMessageResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
-
-            using (new AssertionScope())
-            {
-                criarUsuarioRequest.StatusCode.Should().Be(400);
-                criarUsuarioRequest.Data.Message.Should().Be("Invalid access level");
-                criarUsuarioRequest.Data.Code.Should().Be(29);
-                criarUsuarioRequest.Data.Localized.Should().Be("Invalid value for 'access_level'"); 
-            } 
-        }
-
+         
     }
 }
