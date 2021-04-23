@@ -42,7 +42,7 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
  - [x] 10) Executar testes em paralelo. Pelo menos duas threads (25 testes cada).
  > O arquivo `xunit.runner.json` na raiz do projeto está configurado para realizar a execução dos testes em paralelo e em duas threads.
  - [x]  11) Testes deverão ser agendados pelo Jenkins, CircleCI, TFS ou outra ferramenta de CI que preferir.
- > Os testes estão implementados na pipeline do Jenkins para o ambiente de `DEV`, o script de configuração da pipeline está disponivel na raiz do projeto.
+ > Os testes estão implementados na pipeline do Jenkins para o ambiente de `DEV`, o script de configuração da pipeline está disponivel na raiz do projeto. O projeto possui um `webhook` que a cada push realizado no repositório do GitHub é disparado automaticamente um novo build no Jenkins.
 
 ## Referências
 - [Configuration Files XUnit](https://xunit.net/docs/configuration-files): Documentação de configuração do runner do XUnit, utilizado para setar os testes em paralelo e em threads.
@@ -51,3 +51,4 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [.NET SDK Support - Jenkins Plugin](https://plugins.jenkins.io/dotnet-sdk/): Plugin de apoio para utilização do SDK 5.0 .NET e utilzação de comandos `dotnet` na pipeline 
 - [Allure XUnit](https://github.com/TinkoffCreditSystems/Allure.XUnit): Adapter do Allure Reports para execução no XUnit
 - [Allure Plugin Jenkins](https://docs.qameta.io/allure/#_jenkins): Documentação de configuração do Allure Reports para execução no Jenkins
+- [Triggering a Jenkins build on push using GitHub webhooks](https://faun.pub/triggering-jenkins-build-on-push-using-github-webhooks-52d4361542d4) / [Jenkins Tutorial: Configure (SCM) Github Triggers and Git Polling using Ngrok](https://www.cloudbees.com/blog/jenkins-tutorial-configure-scm-github-triggers-and-git-polling-using-ngrok) - Configuração do para que o build do Jenkins realize um trigger a cada push no repositório do projeto.
