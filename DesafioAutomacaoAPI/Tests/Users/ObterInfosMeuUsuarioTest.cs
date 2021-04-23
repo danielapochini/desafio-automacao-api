@@ -10,7 +10,8 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Xunit; 
+using Xunit;
+using Allure.Xunit.Attributes;
 
 namespace DesafioAutomacaoAPI.Tests.Users
 { 
@@ -18,9 +19,10 @@ namespace DesafioAutomacaoAPI.Tests.Users
     {
         private readonly RestManager restManager = new RestManager();
 
-        [Fact]
+        [AllureXunit]
         public void ObterMyUserInfo()
         { 
+
             string urlGetUserInfo = "api/rest/users/me";
              
             var obterDados = restManager.PerformGetRequest<UsersResponseAttributes>(urlGetUserInfo);             

@@ -1,4 +1,5 @@
-﻿using DesafioAutomacaoAPI.Base;
+﻿using Allure.Xunit.Attributes;
+using DesafioAutomacaoAPI.Base;
 using DesafioAutomacaoAPI.Model;
 using DesafioAutomacaoAPI.Model.Request.Users;
 using DesafioAutomacaoAPI.Model.Users;
@@ -20,7 +21,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
     {
         private readonly RestManager restManager = new RestManager();
 
-        [Fact]
+        [AllureXunit]
         public void CriarUserInvalidoUsernameRegex()
         {
             string urlPostUsuario = "api/rest/users/";
@@ -57,7 +58,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
 
 
         }
-        [Fact]
+        [AllureXunit]
         public void CriarUserInvalidoEmailRegex()
         {
             string urlPostUsuario = "api/rest/users/";

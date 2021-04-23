@@ -27,7 +27,8 @@ namespace DesafioAutomacaoAPI.Utils.Settings
             
             var config = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile($"appsettings.{environmentName}.json", optional: false, reloadOnChange: true) 
+               .AddJsonFile($"appsettings.{environmentName}.json", optional: false, reloadOnChange: true)
+               .AddEnvironmentVariables()
                .Build();
 
             return config[nameParam].ToString();
