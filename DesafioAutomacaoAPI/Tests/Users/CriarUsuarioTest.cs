@@ -16,7 +16,7 @@ using Xunit;
 
 namespace DesafioAutomacaoAPI.Tests.Users
 {
-    public class CriarUsuarioTest
+    public class CriarUsuarioTest : IClassFixture<TestBase>
     {
         private readonly RestManager restManager = new RestManager();
 
@@ -37,6 +37,40 @@ namespace DesafioAutomacaoAPI.Tests.Users
                 },
                 Enabled = true,
                 Protected = false
+            };
+
+            var criarUsuarioRequest = restManager.PerformPostRequest<UserResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
+            var resultadoListarUsers = UsersQueries.ListarInformacoesUsuario(criarUsuarioRequest.Data.User.Name);
+
+            using (new AssertionScope())
+            {
+                criarUsuarioRequest.StatusCode.Should().Be(201);
+                resultadoListarUsers.Id.Should().Be(criarUsuarioRequest.Data.User.Id);
+                resultadoListarUsers.UserName.Should().Be(criarUsuarioRequest.Data.User.Name);
+                resultadoListarUsers.RealName.Should().Be(criarUsuarioRequest.Data.User.RealName);
+                resultadoListarUsers.AccessLevel.Should().Be(criarUsuarioRequest.Data.User.AccessLevel.Id);
+                resultadoListarUsers.Email.Should().Be(criarUsuarioRequest.Data.User.Email);
+            }
+        }
+
+        [AllureXunitTheory]
+        [CsvData("Utils/Resources/DataDriven/testdata.csv")]
+        public void CriarUserDadosValidosDataDriven(string username, string password, string realname, string email, string name, bool enabled, bool isprotected)
+        {
+            string urlPostUsuario = "api/rest/users/";
+
+            var userBodyRequest = new UsersRequest
+            {
+                Username = username,
+                Password = password,
+                RealName = realname,
+                Email = email,
+                AccessLevel = new AccessLevelRequest
+                {
+                    Name = name
+                },
+                Enabled = enabled,
+                Protected = isprotected
             };
 
             var criarUsuarioRequest = restManager.PerformPostRequest<UserResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
