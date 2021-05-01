@@ -1,17 +1,10 @@
-﻿using DesafioAutomacaoAPI.Base;
-using DesafioAutomacaoAPI.Model.Users;
-using DesafioAutomacaoAPI.Utils.Entities;
-using DesafioAutomacaoAPI.Utils.Queries.Users;
-using DesafioAutomacaoAPI.Utils.Settings;
-using FluentAssertions;
-using System.Linq;
+﻿using Allure.Xunit.Attributes;
+using DesafioAutomacaoAPI.Base;
+using DesafioAutomacaoAPI.Model.Users; 
+using DesafioAutomacaoAPI.Utils.Queries.Users; 
+using FluentAssertions; 
 using FluentAssertions.Execution;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
-using Allure.Xunit.Attributes;
 
 namespace DesafioAutomacaoAPI.Tests.Users
 { 
