@@ -15,7 +15,7 @@ namespace DesafioAutomacaoAPI.Utils.Queries.Users
                 "WHERE username = '$USERNAME'".Replace("$USERNAME", userName);
 
             //FirstOrDefault pois o método chamado retorna um Inumerable
-            return Database.ExecuteDbCommand<UsersEntity>(query).FirstOrDefault();
+            return DatabaseHelper.ExecuteDbCommand<UsersEntity>(query).FirstOrDefault();
         } 
     }
 }

@@ -32,6 +32,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
     <PackageReference Include="MySql.Data" Version="8.0.23" />
+    <PackageReference Include="MySqlBackup.NET" Version="2.3.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
     <PackageReference Include="coverlet.collector" Version="3.0.3">
@@ -57,11 +58,11 @@
     <None Update="Properties\launchSettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None> 
+    <None Update="Utils\Resources\Database\mantis_dump.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None> 
     <None Update="Utils\Resources\DataDriven\testdata.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="xunit.runner.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
@@ -70,8 +71,11 @@
 		<Content Include="appsettings.*.json" Exclude="appsettings.$(EnvironmentName).json" DependentUpon="appsettings.json" CopyToOutputDirectory="Never" />
 		<Content Remove="C:\Users\pocch\.nuget\packages\allure.commons\3.5.0.34\contentFiles\any\netstandard2.0\allureConfig.Template.json" />
 		<Content Remove="C:\Users\pocch\.nuget\packages\allure.xunit\1.0.0\contentFiles\any\netcoreapp2.0\allureConfig.Template.json" />
-		<None Remove="appsettings.json" />
+		<None Remove="appsettings.json" /> 
 		<Content Include="appsettings.$(EnvironmentName).json" DependentUpon="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="xunit.runner.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
  
 	
