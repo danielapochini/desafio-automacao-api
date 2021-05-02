@@ -1,4 +1,5 @@
-﻿using Allure.Xunit.Attributes;
+﻿using Allure.Xunit;
+using Allure.Xunit.Attributes;
 using DesafioAutomacaoAPI.Base;
 using DesafioAutomacaoAPI.Model;
 using DesafioAutomacaoAPI.Model.Request.Users;
@@ -17,9 +18,11 @@ using Xunit;
 
 namespace DesafioAutomacaoAPI.Tests.Users
 {
-    public class CriarUsuarioRegexTest
+    [Collection("Mantis")]
+    public class CriarUsuarioRegexTest 
     {
         private readonly RestManager restManager = new RestManager();
+        private readonly AllureHelper allureHelper = new AllureHelper();
 
         [AllureXunit]
         public void CriarUserInvalidoUsernameRegex()
@@ -44,20 +47,24 @@ namespace DesafioAutomacaoAPI.Tests.Users
 
             if (validatorUsername == false)
             {
+
                 var criarUsuarioRequest = restManager.PerformPostRequest<ErrorMessageResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
-
-                using (new AssertionScope())
+                 
+                Steps.Step("Assertions", () =>
                 {
-                    criarUsuarioRequest.StatusCode.Should().Be(400);
-                    criarUsuarioRequest.Data.Message.Should().Be($"Invalid username '{userBodyRequest.Username}'");
-                    criarUsuarioRequest.Data.Code.Should().Be(805);
-                    criarUsuarioRequest.Data.Localized.Should().Be("The username is invalid. Usernames may only contain Latin letters, numbers, spaces, hyphens, dots, plus signs and underscores.");
-                }
-            }
-            
+                    using (new AssertionScope())
+                    {
+                        criarUsuarioRequest.StatusCode.Should().Be(400);
+                        criarUsuarioRequest.Data.Message.Should().Be($"Invalid username '{userBodyRequest.Username}'");
+                        criarUsuarioRequest.Data.Code.Should().Be(805);
+                        criarUsuarioRequest.Data.Localized.Should().Be("The username is invalid. Usernames may only contain Latin letters, numbers, spaces, hyphens, dots, plus signs and underscores.");
+                    }
+                });
 
-
+                allureHelper.AdicionarResultado(criarUsuarioRequest);
+            } 
         }
+
         [AllureXunit]
         public void CriarUserInvalidoEmailRegex()
         {
@@ -82,14 +89,19 @@ namespace DesafioAutomacaoAPI.Tests.Users
             if (validatorEmail == false)
             {
                 var criarUsuarioRequest = restManager.PerformPostRequest<ErrorMessageResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
-
-                using (new AssertionScope())
+                 
+                Steps.Step("Assertions", () =>
                 {
-                    criarUsuarioRequest.StatusCode.Should().Be(400);
-                    criarUsuarioRequest.Data.Message.Should().Be($"Email '{userBodyRequest.Email}' is invalid.");
-                    criarUsuarioRequest.Data.Code.Should().Be(1200);
-                    criarUsuarioRequest.Data.Localized.Should().Be("Invalid e-mail address.");
-                }
+                    using (new AssertionScope())
+                    {
+                        criarUsuarioRequest.StatusCode.Should().Be(400);
+                        criarUsuarioRequest.Data.Message.Should().Be($"Email '{userBodyRequest.Email}' is invalid.");
+                        criarUsuarioRequest.Data.Code.Should().Be(1200);
+                        criarUsuarioRequest.Data.Localized.Should().Be("Invalid e-mail address.");
+                    }
+                });
+
+                allureHelper.AdicionarResultado(criarUsuarioRequest);
             } 
         }
     }

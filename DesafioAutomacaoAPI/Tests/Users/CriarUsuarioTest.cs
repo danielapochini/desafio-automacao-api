@@ -1,4 +1,6 @@
-﻿using Allure.Xunit.Attributes;
+﻿using Allure.Commons;
+using Allure.Xunit;
+using Allure.Xunit.Attributes; 
 using Allure.XUnit;
 using DesafioAutomacaoAPI.Base;
 using DesafioAutomacaoAPI.Model;
@@ -7,15 +9,19 @@ using DesafioAutomacaoAPI.Model.Users;
 using DesafioAutomacaoAPI.Utils;
 using DesafioAutomacaoAPI.Utils.Helpers;
 using DesafioAutomacaoAPI.Utils.Queries.Users;
+using DesafioAutomacaoAPI.Utils.Settings;
 using FluentAssertions;
 using FluentAssertions.Execution; 
 using Xunit;
+using Xunit.Abstractions;
 
 namespace DesafioAutomacaoAPI.Tests.Users
 {
-    public class CriarUsuarioTest : IClassFixture<TestBase>
-    {
+    [Collection("Mantis")]
+    public class CriarUsuarioTest 
+    { 
         private static readonly RestManager restManager = new RestManager();
+        private readonly AllureHelper allureHelper = new AllureHelper(); 
 
         [AllureXunit]
         public void CriarUserDadosValidos()
@@ -39,19 +45,23 @@ namespace DesafioAutomacaoAPI.Tests.Users
             var criarUsuarioRequest = restManager.PerformPostRequest<UserResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
             var resultadoListarUsers = UsersQueries.ListarInformacoesUsuario(criarUsuarioRequest.Data.User.Name);
 
-            using (new AssertionScope())
+            Steps.Step("Assertions", () =>
             {
-                criarUsuarioRequest.StatusCode.Should().Be(201);
-                resultadoListarUsers.Id.Should().Be(criarUsuarioRequest.Data.User.Id);
-                resultadoListarUsers.UserName.Should().Be(criarUsuarioRequest.Data.User.Name);
-                resultadoListarUsers.RealName.Should().Be(criarUsuarioRequest.Data.User.RealName);
-                resultadoListarUsers.AccessLevel.Should().Be(criarUsuarioRequest.Data.User.AccessLevel.Id);
-                resultadoListarUsers.Email.Should().Be(criarUsuarioRequest.Data.User.Email);
-            }
-            
+                using (new AssertionScope())
+                {
+                    criarUsuarioRequest.StatusCode.Should().Be(201);
+                    resultadoListarUsers.Id.Should().Be(criarUsuarioRequest.Data.User.Id);
+                    resultadoListarUsers.UserName.Should().Be(criarUsuarioRequest.Data.User.Name);
+                    resultadoListarUsers.RealName.Should().Be(criarUsuarioRequest.Data.User.RealName);
+                    resultadoListarUsers.AccessLevel.Should().Be(criarUsuarioRequest.Data.User.AccessLevel.Id);
+                    resultadoListarUsers.Email.Should().Be(criarUsuarioRequest.Data.User.Email);
+                }
+            });
+
+            allureHelper.AdicionarResultado(criarUsuarioRequest);
         }
           
-        [AllureXunit]
+        [AllureXunit] 
         public void CriarUserAcessoInvalido()
         {
             string urlPostUsuario = "api/rest/users/";
@@ -72,17 +82,22 @@ namespace DesafioAutomacaoAPI.Tests.Users
 
             var criarUsuarioRequest = restManager.PerformPostRequest<ErrorMessageResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
 
-            using (new AssertionScope())
+            Steps.Step("Assertions", () =>
+            {
+                using (new AssertionScope())
             {
                 criarUsuarioRequest.StatusCode.Should().Be(400);
                 criarUsuarioRequest.Data.Message.Should().Be("Invalid access level");
                 criarUsuarioRequest.Data.Code.Should().Be(29);
-                criarUsuarioRequest.Data.Localized.Should().Be("Invalid value for 'access_level'"); 
-            } 
+                criarUsuarioRequest.Data.Localized.Should().Be("Invalid value for 'access_level'");
+            }
+            });
+
+            allureHelper.AdicionarResultado(criarUsuarioRequest);
         }
 
         [AllureXunitTheory, CsvData("Utils/Resources/DataDriven/testdata.csv")]
-        public static void CriarUserDadosValidosDataDriven(string username, string password, string realname, string email, string name, bool enabled, bool isprotected)
+        public void CriarUserDadosValidosDataDriven(string username, string password, string realname, string email, string name, bool enabled, bool isprotected)
         {
             string urlPostUsuario = "api/rest/users/";
 
@@ -103,15 +118,19 @@ namespace DesafioAutomacaoAPI.Tests.Users
             var criarUsuarioRequest = restManager.PerformPostRequest<UserResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
             var resultadoListarUsers = UsersQueries.ListarInformacoesUsuario(criarUsuarioRequest.Data.User.Name);
 
-            using (new AssertionScope())
-            {
-                criarUsuarioRequest.StatusCode.Should().Be(201);
-                resultadoListarUsers.Id.Should().Be(criarUsuarioRequest.Data.User.Id);
-                resultadoListarUsers.UserName.Should().Be(criarUsuarioRequest.Data.User.Name);
-                resultadoListarUsers.RealName.Should().Be(criarUsuarioRequest.Data.User.RealName);
-                resultadoListarUsers.AccessLevel.Should().Be(criarUsuarioRequest.Data.User.AccessLevel.Id);
-                resultadoListarUsers.Email.Should().Be(criarUsuarioRequest.Data.User.Email);
-            }
+            Steps.Step("Assertions", () => {
+                using (new AssertionScope())
+                {
+                    criarUsuarioRequest.StatusCode.Should().Be(201);
+                    resultadoListarUsers.Id.Should().Be(criarUsuarioRequest.Data.User.Id);
+                    resultadoListarUsers.UserName.Should().Be(criarUsuarioRequest.Data.User.Name);
+                    resultadoListarUsers.RealName.Should().Be(criarUsuarioRequest.Data.User.RealName);
+                    resultadoListarUsers.AccessLevel.Should().Be(criarUsuarioRequest.Data.User.AccessLevel.Id);
+                    resultadoListarUsers.Email.Should().Be(criarUsuarioRequest.Data.User.Email);
+                }
+            });
+
+            allureHelper.AdicionarResultado(criarUsuarioRequest);
         }
     }
 }
