@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DesafioAutomacaoAPI.Utils.Settings
 {
-    public class AppSettings : LaunchSettingsFixture
+    public class AppSettings  
     {
         public Uri BaseUrl { get; set; }
         public string Token { get; set; }
@@ -22,12 +22,16 @@ namespace DesafioAutomacaoAPI.Utils.Settings
          
 
         public static string ReturnParamAppSettings(string nameParam)
-        {
-            string environmentName = GetEnvironment();
+        { 
             
             var config = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile($"appsettings.{environmentName}.json", optional: false, reloadOnChange: true)
+#if DEV
+               .AddJsonFile($"appsettings.DEV.json", optional: false, reloadOnChange: true)
+#endif
+#if HML
+               .AddJsonFile($"appsettings.HML.json", optional: false, reloadOnChange: true)
+#endif
                .AddEnvironmentVariables()
                .Build();
 

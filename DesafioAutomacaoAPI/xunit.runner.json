@@ -1,7 +1,9 @@
-﻿{ 
-  "diagnosticMessages": true,
+{
+  "$schema": "https://xunit.net/schema/current/xunit.runner.schema.json",
   "maxParallelThreads": 2,
-  "methodDisplay": "method", 
+  "methodDisplay": "method",
+  "methodDisplayOptions": "all",
   "parallelizeAssembly": true,
-  "parallelizeTestCollections": true
+  "parallelizeTestCollections": true,
+  "diagnosticMessages": true 
 }
