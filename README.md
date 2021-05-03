@@ -22,6 +22,7 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [RestSharp.Serializers.NewsoftJson](https://restsharp.dev/usage/serialization.html#newtonsoftjson-aka-json-net) - Package que substitui o deserilizador/serilizador padrão e que permite configurações personalizadas
 - [FluentAssertions](https://fluentassertions.com/introduction) - Extensão de métodos de Assert de forma mais clara e natural
 - [Dapper](https://www.learndapper.com/) - (Object Relational Mapping) voltado para o desenvolvimento .NET, ou seja, auxilia no mapeamento de objetos a partir de consulta SQL.
+- [MySqlBackup.NET](https://www.nuget.org/packages/MySqlBackup.NET/) - Ferramenta que auxilia na realização do restore do banco de dados
 - [Boggus](https://github.com/bchavez/Bogus) - Biblioteca para gerar dados fakes 
 - [Allure Reports](https://github.com/allure-framework/allure-csharp) - Biblioteca para gerar relatórios de testes
 
@@ -41,10 +42,12 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
  > Após a execução do build na pipeline, o relatório de teste é gerado automaticamente utilizando o plugin de `Allure Reports`, na pasta `allure-report` na raiz do workspace do Jenkins.
  - [x] 8) Implementar pelo menos dois ambientes (desenvolvimento / homologação)
   > Os ambientes de `DEV` e `HML` foram implementados no projeto. Há dois arquivos na raiz do projeto, `appsettings.DEV.json` e `appsettings.HML.json` que são compilados conforme o ambiente selecionado nas configurações de build.
+ - [x] 9) A massa de testes deve ser preparada neste projeto, seja com scripts carregando massa nova no BD ou com restore de banco de dados.
+ > A massa de dados está sendo tratada através do método `DatabaseHelper.ResetMantisDatabase()` que realiza o restore do BD antes da execução dos testes.
  - [x] 10) Executar testes em paralelo. Pelo menos duas threads (25 testes cada).
  > O arquivo `xunit.runner.json` na raiz do projeto está configurado para realizar a execução dos testes em paralelo e em duas threads.
  - [x]  11) Testes deverão ser agendados pelo Jenkins, CircleCI, TFS ou outra ferramenta de CI que preferir.
- > Os testes estão implementados na pipeline do Jenkins para o ambiente de `DEV`, o script de configuração da pipeline está disponivel na raiz do projeto. O projeto possui um `webhook` que a cada push realizado no repositório do GitHub é disparado automaticamente um novo build no Jenkins.
+ > Os testes estão implementados na pipeline do Jenkins para o ambiente de `DEV`, o script de configuração da pipeline está disponível na raiz do projeto. O projeto possui um `webhook` que a cada push realizado no repositório do GitHub é disparado automaticamente um novo build no Jenkins.
 
 ## Referências
 - [Configuration Files XUnit](https://xunit.net/docs/configuration-files): Documentação de configuração do runner do XUnit, utilizado para setar os testes em paralelo e em threads.
@@ -55,3 +58,4 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [Allure Plugin Jenkins](https://docs.qameta.io/allure/#_jenkins): Documentação de configuração do Allure Reports para execução no Jenkins
 - [Triggering a Jenkins build on push using GitHub webhooks](https://faun.pub/triggering-jenkins-build-on-push-using-github-webhooks-52d4361542d4) / [Jenkins Tutorial: Configure (SCM) Github Triggers and Git Polling using Ngrok](https://www.cloudbees.com/blog/jenkins-tutorial-configure-scm-github-triggers-and-git-polling-using-ngrok): Configuração para que o build do Jenkins realize um trigger a cada push no repositório do projeto.
 - [Data Driven Test in xUnit Using Custom Attribute](https://softwareautomationtest.home.blog/2019/04/07/data-driven-test-in-xunit-using-custom-attribute/): Criação de atributo personalizável para testes data driven utilizando .CSV
+- [Backing up Database in MySQL using C#](https://stackoverflow.com/a/12311685): Utilização da ferramenta MySqlBackup.NET para restore do banco de dados
