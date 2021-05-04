@@ -1,11 +1,6 @@
-﻿using Allure.Commons;
-using DesafioAutomacaoAPI.Utils.Helpers;
+﻿using DesafioAutomacaoAPI.Utils.Helpers;
 using DesafioAutomacaoAPI.Utils.Settings;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesafioAutomacaoAPI.Base
 {
@@ -19,12 +14,13 @@ namespace DesafioAutomacaoAPI.Base
         public static void OneTimeSetUp()
         {
             DatabaseHelper.ResetMantisDatabase();
+            NodeJsHelper.InstalarNodeModules(); 
             AllureHelper.SetupAllure();
         }
 
         public void Dispose()
         {
-          
+            NodeJsHelper.LimparNodeModules();
         }
     }
 }

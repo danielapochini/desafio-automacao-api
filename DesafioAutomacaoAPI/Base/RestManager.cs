@@ -82,7 +82,13 @@ namespace DesafioAutomacaoAPI.Base
 
             return restRequest;
         }
-         
+
+        private IRestResponse SendRequest(IRestRequest restRequest)
+        {
+            IRestResponse restResponse = RestClient.Execute(restRequest);
+            return restResponse;
+        }
+
         private IRestResponse<T> SendRequest<T>(IRestRequest restRequest) 
         { 
             IRestResponse<T> restResponse = RestClient.Execute<T>(restRequest); 
@@ -104,11 +110,11 @@ namespace DesafioAutomacaoAPI.Base
             return SendRequest<TResponse>(restRequest);
         }
 
-        public IRestResponse<TResponse> PerformPostRequest<TResponse, TBody>(string url, object body)
+        public IRestResponse PerformPostRequest<TBody>(string url, TBody body)
         {
             var restRequest = GetRestRequest(url, body, Method.POST);
 
-            return SendRequest<TResponse>(restRequest);
+            return SendRequest(restRequest);
         }
     }
 }
