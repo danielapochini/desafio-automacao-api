@@ -51,6 +51,9 @@
 		<Content Include="Utils\Resources\DataDriven\testdata.csv">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Utils\Resources\NodeJs\scriptDataAleatoria.js">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 
@@ -58,14 +61,17 @@
 		<None Update="allureConfig.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Update="Utils\Resources\Database\createtable.sql">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Utils\Resources\Database\droptable.sql">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
 		<None Update="Utils\Resources\Database\mantis_dump.sql">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Utils\Resources\NodeJs\node_modules\.package-lock.json">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Utils\Resources\NodeJs\package-lock.json">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Utils\Resources\NodeJs\package.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 
@@ -74,6 +80,7 @@
 		<Content Remove="C:\Users\pocch\.nuget\packages\allure.xunit\1.0.0\contentFiles\any\netcoreapp2.0\allureConfig.Template.json" />
 		<None Remove="appsettings.json" />
 		<None Remove="Utils\Resources\DataDriven\testdata.csv" />
+		<None Remove="Utils\Resources\NodeJs\scriptDataAleatoria.js" />
 		<EmbeddedResource Include="appsettings.$(EnvironmentName).json" DependentUpon="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup> 
 </Project>

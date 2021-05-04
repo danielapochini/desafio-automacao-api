@@ -3,6 +3,7 @@ using DesafioAutomacaoAPI.Model.Request.Users;
 using DesafioAutomacaoAPI.Model.Users;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Text;
 
 namespace DesafioAutomacaoAPI.Utils
@@ -39,6 +40,18 @@ namespace DesafioAutomacaoAPI.Utils
                                 .RuleFor(p => p.Password, f => f.Internet.Password())
                                 .Generate();
             return faker.Password;
-        } 
+        }
+
+        public static int GerarId()
+        {
+            var faker = new Faker("pt_BR");
+
+            var data = new
+            {
+                Id = faker.Random.Number(1, 100)
+            };
+
+            return data.Id;
+        }
     }
 }
