@@ -25,6 +25,8 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [MySqlBackup.NET](https://www.nuget.org/packages/MySqlBackup.NET/) - Ferramenta que auxilia na realização do restore do banco de dados
 - [Boggus](https://github.com/bchavez/Bogus) - Biblioteca para gerar dados fakes 
 - [Allure Reports](https://github.com/allure-framework/allure-csharp) - Biblioteca para gerar relatórios de testes
+- [NodeJs](https://nodejs.org/en/docs/) - Realiza a execução de códigos JavaScript
+- [Moment.js](https://momentjs.com/docs/#/use-it/) - Biblioteca JavaScript para manipulação de datas
 
 ## Arquitetura
  
@@ -33,11 +35,14 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
  
  ## Metas
  - [x]  2) Alguns scripts devem ler dados de uma planilha Excel para implementar Data-Driven.
+ - [x]  3) Notem que 50 scripts podem cobrir mais de 50 casos de testes se usarmos Data-Driven. Em outras palavras, implementar 50 CTs usando data-driven não é a mesma coisa que implementar 50 scripts.
  > A classe de teste `Users/CriarUsuarioDataDrivenTest.cs` está realizando a leitura do arquivo .CSV que está no caminho `Utils/Resources/DataDriven/`
  - [x]  4) O projeto deve tratar autenticação.
  > O token para utilização da API é gerado pelo usuário administrador no painel `Tokens API` em sua conta e este Token é passado no Header da requisição, conforme a documentação da [API Mantis](https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#intro)
  - [x]  5) Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares).
  > Os métodos `IsValidAddress()` e `IsValidUsername()` gerados na classe `RegexHelper` retornam através do assert `IsMatch` se o parâmetro passado atende ao Regex. Testes criados na classe `CriarUsuarioRegexTest` utilizam estes métodos.
+ - [x] 6) Pelo menos um script deve usar código Groovy / Node.js ou outra linguagem para fazer scripts.
+ > O método `NodeJsHelper.RetornaDataAleatoriaEmTrintaDias()` realiza a execução do script `scriptDataAleatoria.js` para gerar uma data aleatória em nodeJS utilizando a biblioteca npm `Moment.js` que é baixada através de um processo executado na inicialização do projeto
  - [x]  7) O projeto deverá gerar um relatório de testes automaticamente.
  > Após a execução do build na pipeline, o relatório de teste é gerado automaticamente utilizando o plugin de `Allure Reports`, na pasta `allure-report` na raiz do workspace do Jenkins.
  - [x] 8) Implementar pelo menos dois ambientes (desenvolvimento / homologação)
@@ -59,3 +64,5 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [Triggering a Jenkins build on push using GitHub webhooks](https://faun.pub/triggering-jenkins-build-on-push-using-github-webhooks-52d4361542d4) / [Jenkins Tutorial: Configure (SCM) Github Triggers and Git Polling using Ngrok](https://www.cloudbees.com/blog/jenkins-tutorial-configure-scm-github-triggers-and-git-polling-using-ngrok): Configuração para que o build do Jenkins realize um trigger a cada push no repositório do projeto.
 - [Data Driven Test in xUnit Using Custom Attribute](https://softwareautomationtest.home.blog/2019/04/07/data-driven-test-in-xunit-using-custom-attribute/): Criação de atributo personalizável para testes data driven utilizando .CSV
 - [Backing up Database in MySQL using C#](https://stackoverflow.com/a/12311685): Utilização da ferramenta MySqlBackup.NET para restore do banco de dados
+- [Process Class](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.process?view=net-5.0) / [RedirectStandardOutput Property](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo.redirectstandardoutput?redirectedfrom=MSDN&view=net-5.0#System_Diagnostics_ProcessStartInfo_RedirectStandardOutput): Utilização de processos em .NET
+- [Start NodeJS Application from C#](https://stackoverflow.com/questions/35312174/start-nodejs-application-from-c-sharp-web-form-application): Execução de processos em NodeJs
