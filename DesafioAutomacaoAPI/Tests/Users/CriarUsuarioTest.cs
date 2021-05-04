@@ -20,8 +20,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
     [Collection("Mantis")]
     public class CriarUsuarioTest 
     { 
-        private static readonly RestManager restManager = new RestManager();
-        private readonly AllureHelper allureHelper = new AllureHelper(); 
+        private static readonly RestManager restManager = new RestManager(); 
 
         [AllureXunit]
         public void CriarUserDadosValidos()
@@ -58,7 +57,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
                 }
             });
 
-            allureHelper.AdicionarResultado(criarUsuarioRequest);
+            AllureHelper.AdicionarResultado(criarUsuarioRequest);
         }
           
         [AllureXunit] 
@@ -93,7 +92,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
             }
             });
 
-            allureHelper.AdicionarResultado(criarUsuarioRequest);
+            AllureHelper.AdicionarResultado(criarUsuarioRequest);
         }
 
         [AllureXunitTheory, CsvData("Utils/Resources/DataDriven/testdata.csv")]
@@ -130,7 +129,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
                 }
             });
 
-            allureHelper.AdicionarResultado(criarUsuarioRequest);
+            AllureHelper.AdicionarResultado(criarUsuarioRequest);
         }
     }
 }

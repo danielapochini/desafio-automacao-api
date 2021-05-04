@@ -12,8 +12,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
     [Collection("Mantis")]
     public class ObterInfosMeuUsuarioTest  
     {
-        private readonly RestManager restManager = new RestManager(); 
-        private readonly AllureHelper allureHelper = new AllureHelper();
+        private readonly RestManager restManager = new RestManager();  
 
         [AllureXunit]
         public void ObterMyUserInfo()
@@ -34,7 +33,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
                 resultadoListarUsers.AccessLevel.Should().Be(obterDadosResponse.Data.AccessLevel.Id);
             }
 
-            allureHelper.AdicionarResultado(obterDadosResponse);
+            AllureHelper.AdicionarResultado(obterDadosResponse);
         }
     }
 }

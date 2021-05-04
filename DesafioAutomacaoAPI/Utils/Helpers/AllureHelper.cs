@@ -16,7 +16,7 @@ namespace DesafioAutomacaoAPI.Utils.Helpers
             AllureLifecycle.Instance.CleanupResultDirectory();
         }
 
-        public void AdicionarResultado(IRestResponse response)
+        public static void AdicionarResultado(IRestResponse response)
         {
             Steps.Step("Resultado", () =>
             {

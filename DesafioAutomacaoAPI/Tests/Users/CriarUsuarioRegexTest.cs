@@ -21,8 +21,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
     [Collection("Mantis")]
     public class CriarUsuarioRegexTest 
     {
-        private readonly RestManager restManager = new RestManager();
-        private readonly AllureHelper allureHelper = new AllureHelper();
+        private readonly RestManager restManager = new RestManager(); 
 
         [AllureXunit]
         public void CriarUserInvalidoUsernameRegex()
@@ -61,7 +60,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
                     }
                 });
 
-                allureHelper.AdicionarResultado(criarUsuarioRequest);
+                AllureHelper.AdicionarResultado(criarUsuarioRequest);
             } 
         }
 
@@ -101,7 +100,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
                     }
                 });
 
-                allureHelper.AdicionarResultado(criarUsuarioRequest);
+                AllureHelper.AdicionarResultado(criarUsuarioRequest);
             } 
         }
     }
