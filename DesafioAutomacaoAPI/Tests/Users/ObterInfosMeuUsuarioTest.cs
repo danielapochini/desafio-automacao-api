@@ -1,4 +1,5 @@
-﻿using Allure.Xunit.Attributes;
+﻿using Allure.Xunit;
+using Allure.Xunit.Attributes;
 using DesafioAutomacaoAPI.Base;
 using DesafioAutomacaoAPI.Model.Users;
 using DesafioAutomacaoAPI.Utils.Helpers;
@@ -22,16 +23,19 @@ namespace DesafioAutomacaoAPI.Tests.Users
             var obterDadosResponse = restManager.PerformGetRequest<UsersResponseAttributes>(urlGetUserInfo);             
             var resultadoListarUsers = UsersQueries.ListarInformacoesUsuario(obterDadosResponse.Data.Name);
              
-            //usando fluent validations para realizar asserts multiplos 
-            using (new AssertionScope())
+            Steps.Step("Assertions", () =>
             {
-                obterDadosResponse.StatusCode.Should().Be(200); 
-                resultadoListarUsers.Id.Should().Be(obterDadosResponse.Data.Id);
-                resultadoListarUsers.UserName.Should().Be(obterDadosResponse.Data.Name);
-                resultadoListarUsers.RealName.Should().Be(obterDadosResponse.Data.RealName);
-                resultadoListarUsers.Email.Should().Be(obterDadosResponse.Data.Email);
-                resultadoListarUsers.AccessLevel.Should().Be(obterDadosResponse.Data.AccessLevel.Id);
-            }
+                //usando fluent validations para realizar asserts multiplos 
+                using (new AssertionScope()) 
+                {
+                    obterDadosResponse.StatusCode.Should().Be(200); 
+                    resultadoListarUsers.Id.Should().Be(obterDadosResponse.Data.Id);
+                    resultadoListarUsers.UserName.Should().Be(obterDadosResponse.Data.Name);
+                    resultadoListarUsers.RealName.Should().Be(obterDadosResponse.Data.RealName);
+                    resultadoListarUsers.Email.Should().Be(obterDadosResponse.Data.Email);
+                    resultadoListarUsers.AccessLevel.Should().Be(obterDadosResponse.Data.AccessLevel.Id);
+                }
+            });
 
             AllureHelper.AdicionarResultado(obterDadosResponse);
         }
