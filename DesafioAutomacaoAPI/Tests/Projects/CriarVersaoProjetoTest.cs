@@ -12,11 +12,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects
-{
-   [Collection("Mantis")]
-    public class CriarVersaoProjetoTest
+{ 
+    public class CriarVersaoProjetoTest : IAssemblyFixture<TestBase>
     {
         private readonly RestManager restManager = new RestManager(); 
 

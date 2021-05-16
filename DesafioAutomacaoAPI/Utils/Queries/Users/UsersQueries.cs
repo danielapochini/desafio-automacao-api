@@ -1,9 +1,6 @@
 ﻿using DesafioAutomacaoAPI.Utils.Entities;
-using DesafioAutomacaoAPI.Utils.Settings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using DesafioAutomacaoAPI.Utils.Settings; 
+using System.Linq; 
 
 namespace DesafioAutomacaoAPI.Utils.Queries.Users
 {
@@ -17,5 +14,17 @@ namespace DesafioAutomacaoAPI.Utils.Queries.Users
             //FirstOrDefault pois o método chamado retorna um Inumerable
             return DatabaseHelper.ExecuteDbCommand<UsersEntity>(query).FirstOrDefault();
         } 
+
+        public static UsersEntity ListarUltimoUsuarioCadastrado()
+        {
+            var query = "SELECT * FROM mantis_user_table ORDER BY ID DESC LIMIT 1";
+            return DatabaseHelper.ExecuteDbCommand<UsersEntity>(query).FirstOrDefault();
+        }
+
+        public static UsersEntity ListarAdministrador()
+        {
+            var query = "SELECT * FROM mantis_user_table WHERE access_level = '90' ORDER BY ID DESC LIMIT 1";
+            return DatabaseHelper.ExecuteDbCommand<UsersEntity>(query).FirstOrDefault();
+        }
     }
 }

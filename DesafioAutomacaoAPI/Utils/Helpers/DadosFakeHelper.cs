@@ -53,5 +53,17 @@ namespace DesafioAutomacaoAPI.Utils
 
             return data.Id;
         }
+
+        public static string GerarString()
+        {
+            var faker = new Faker("pt_BR");
+
+            var data = new
+            {
+                String = faker.Random.String2(10)
+            };
+
+            return data.String;
+        }
     }
 }

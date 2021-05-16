@@ -15,11 +15,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Users
-{
-    [Collection("Mantis")]
-    public class CriarUsuarioRegexTest 
+{ 
+    public class CriarUsuarioRegexTest : IAssemblyFixture<TestBase>
     {
         private readonly RestManager restManager = new RestManager(); 
 

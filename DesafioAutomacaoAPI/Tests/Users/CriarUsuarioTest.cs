@@ -14,11 +14,12 @@ using FluentAssertions;
 using FluentAssertions.Execution; 
 using Xunit;
 using Xunit.Abstractions;
+using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Users
 {
-    [Collection("Mantis")]
-    public class CriarUsuarioTest 
+ 
+    public class CriarUsuarioTest : IAssemblyFixture<TestBase>
     { 
         private static readonly RestManager restManager = new RestManager(); 
 

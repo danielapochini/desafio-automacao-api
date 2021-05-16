@@ -7,11 +7,11 @@ using DesafioAutomacaoAPI.Utils.Queries.Users;
 using FluentAssertions; 
 using FluentAssertions.Execution;
 using Xunit;
+using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Users
-{
-    [Collection("Mantis")]
-    public class ObterInfosMeuUsuarioTest  
+{ 
+    public class ObterInfosMeuUsuarioTest : IAssemblyFixture<TestBase>
     {
         private readonly RestManager restManager = new RestManager();  
 

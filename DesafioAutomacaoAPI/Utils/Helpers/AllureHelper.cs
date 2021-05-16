@@ -25,10 +25,11 @@ namespace DesafioAutomacaoAPI.Utils.Helpers
                 if (response.Request.Body != null)
                 {
                     Steps.Step("Body Request: " + response.Request.Body.Value);
-                } 
+                }
 
+                Steps.Step("Método: " + response.Request.Method);
                 Steps.Step("Url: " + response.Request.Resource);
-                Steps.Step("Status Code: " + (int)response.StatusCode); 
+                Steps.Step("Status Code: " + (int)response.StatusCode + " - " + response.StatusDescription);
 
                 if (!string.IsNullOrEmpty(response.Content))
                 {
