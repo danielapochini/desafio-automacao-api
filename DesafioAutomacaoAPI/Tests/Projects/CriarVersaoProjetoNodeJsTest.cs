@@ -16,12 +16,12 @@ using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects
 { 
-    public class CriarVersaoProjetoTest : IAssemblyFixture<TestBase>
+    public class CriarVersaoProjetoNodeJsTest : IAssemblyFixture<TestBase>
     {
         private readonly RestManager restManager = new RestManager(); 
 
         [AllureXunit]
-        public void CriarNovaVersaoDeProjeto()
+        public void CriarNovaVersaoDeProjetoNodeJs()
         {
             int idProjeto = DadosFakeHelper.GerarId();
 

@@ -706,6 +706,9 @@ CREATE TABLE `mantis_project_table` (
 
 LOCK TABLES `mantis_project_table` WRITE;
 /*!40000 ALTER TABLE `mantis_project_table` DISABLE KEYS */;
+INSERT INTO `mantis_project_table` (`id`, `name`, `status`, `enabled`, `view_state`, `access_min`, `file_path`, `description`, `category_id`, `inherit_global`) VALUES
+	(1, 'Projeto Mantis API REST', 10, 1, 10, 10, '/tmp/', 'Projeto Mantis', 1, 1),
+	(2, 'Projeto Teste Mantis API REST', 30, 1, 10, 10, '/tmp/', 'Projeto Teste Mantis', 1, 1);
 /*!40000 ALTER TABLE `mantis_project_table` ENABLE KEYS */;
 UNLOCK TABLES;
 

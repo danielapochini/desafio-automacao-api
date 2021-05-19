@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DesafioAutomacaoAPI.Utils.Entities
 {
-    public class UsersEntity
+    public class UsersEntities
     {
 		public int Id {get;set;}
 		public string UserName {get;set;}
