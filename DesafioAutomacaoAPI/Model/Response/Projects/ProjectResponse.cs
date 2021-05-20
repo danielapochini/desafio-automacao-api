@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DesafioAutomacaoAPI.Model.Response.Projects
 {
-    public class CreateProjectResponse
+    public class ProjectResponse
     {
         [JsonProperty("project")]
         public Project Project { get; set; }

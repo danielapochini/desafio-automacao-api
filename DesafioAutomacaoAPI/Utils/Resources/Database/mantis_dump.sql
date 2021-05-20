@@ -707,8 +707,11 @@ CREATE TABLE `mantis_project_table` (
 LOCK TABLES `mantis_project_table` WRITE;
 /*!40000 ALTER TABLE `mantis_project_table` DISABLE KEYS */;
 INSERT INTO `mantis_project_table` (`id`, `name`, `status`, `enabled`, `view_state`, `access_min`, `file_path`, `description`, `category_id`, `inherit_global`) VALUES
-	(1, 'Projeto Mantis API REST', 10, 1, 10, 10, '/tmp/', 'Projeto Mantis', 1, 1),
-	(2, 'Projeto Teste Mantis API REST', 30, 1, 10, 10, '/tmp/', 'Projeto Teste Mantis', 1, 1);
+	(1, 'Projeto Mantis API REST', 10, 1, 10, 10, '/tmp/', 'Projeto Mantis API REST', 1, 1),
+	(2, 'Projeto Teste Mantis API REST', 30, 1, 10, 10, '/tmp/', 'Projeto Teste Mantis API REST', 1, 1),
+	(3, 'Projeto Teste', 10, 0, 10, 10, '/tmp/', 'Projeto Teste', 1, 1),
+	(4, 'Projeto Teste Dois', 30, 0, 10, 10, '/tmp/', 'Projeto Teste Dois', 1, 1),
+	(5, 'Projeto Dev', 10, 1, 30, 10, '/tmp/', 'Projeto Dev', 1, 1);
 /*!40000 ALTER TABLE `mantis_project_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -992,7 +995,17 @@ CREATE TABLE `mantis_user_table` (
 
 LOCK TABLES `mantis_user_table` WRITE;
 /*!40000 ALTER TABLE `mantis_user_table` DISABLE KEYS */;
-INSERT INTO `mantis_user_table` VALUES (1,'administrator','Daniela Pochini','root@localhost','200ceb26807d6bf99fd6f4f0d1ca54d4',1,0,90,5,0,0,'8Pfw94O1akdxwD4CcBau-EsWLVgenquSatYCSZdpsbvijzySBNQOzF9LvlenXFxA',1619210022,1619203676),(2,'alexandre_souza55','Igor Franco','meire_macedo84@live.com','222c68fb3cae867c1c567e6a80b8842b',1,0,40,0,0,0,'nLpr9CIX2Q6tV7SCuXtTMhrGpdZhccufYFtedmi_Q2PQinlI3VIT3sqQOux9VVWE',1621022436,1621022436),(3,'leonardo55','Alicia Carvalho','joao.silva97@gmail.com','baf2fb610f38e6e803dfb83e596786b8',1,0,40,0,0,0,'TXeB2YHfehnAfIT29Qxa64WQydBw4asxr9n7qvthnlJho0pCy2EX_A9-l6fEM9x1',1621022507,1621022507),(4,'marli_macedo21','Giovanna Pereira','isabela43@gmail.com','2165fc563da826eab6da80ad3a1bccd0',1,0,40,0,0,0,'aAV9mRCaYufj3T-CATzDKTj5YeRtv75usbtpc_asXeJB8u5W53_6Ih7eJ1CzDWIg',1621022518,1621022518),(5,'bruna73','Henrique Barros','beatriz_albuquerque93@gmail.com','4c2b0706baa9475d92932d4f415a7738',1,0,40,0,0,0,'fMZIVbGnausECxzNDBr8vWYsfuaDMQpAHj1Aak8ilM-EPjsDChJZqhj2lVafy5pH',1621022530,1621022530),(6,'miguel.nogueira82','Marli Melo','murilo_albuquerque24@bol.com.br','64bb674604f46918d9b82bb81cdd5763',1,0,40,0,0,0,'CCEeT3t32d1E_p90CgSnJdBvUpRkmJPTHHjzOB5_o-K3B8xKxWImHauUL1v5AX5s',1621022542,1621022542),(7,'valentina_franco','Davi Lucca Melo','kleber11@yahoo.com','d2d8424ac5cb228e089823ed60fd0f27',1,0,40,0,0,0,'DQRQdVasvw_yVtgXS3XZdURTkASI6iq7jQUY6vlba2CjjSpzjQEeIPnIdDBa7g-n',1621022557,1621022557),(8,'alexandre.santos','Marcela Pereira','antonio41@live.com','1562ff6446db6363d8241200b9401a6b',1,0,40,0,0,0,'tuJfIZ4xodX21muSPnDDBkOedFauzqvtiPl64aJ_P-Qe0uHIywUPSqmMwc2E2YQK',1621022577,1621022577),(9,'joana_macedo','Renata Souza','joana11@hotmail.com','6942f198ec20ae0d5148f63cdb510ea5',1,0,40,0,0,0,'qSuteQy8Z9TpYC64ritx2QzHNN6ph__oIMVJ4Bs3oXKpopidHMlDLPoh4y3zzrM9',1621022591,1621022591),(10,'julia_barros','Marli Costa','enzo_xavier40@live.com','affcd66a7924598a9e7080ddcb01c42f',1,0,40,0,0,0,'1zbQxLH0SSwBqgkYrKmzC8t1gCpdxa37OUwbmJ0MCfQGfse369jtdB6eCi8R5N07',1621022603,1621022603);
+INSERT INTO `mantis_user_table` VALUES 
+(1,'administrator','Daniela Pochini','root@localhost','200ceb26807d6bf99fd6f4f0d1ca54d4',1,0,90,5,0,0,'8Pfw94O1akdxwD4CcBau-EsWLVgenquSatYCSZdpsbvijzySBNQOzF9LvlenXFxA',1619210022,1619203676),
+(2,'alexandre_souza55','Igor Franco','meire_macedo84@live.com','222c68fb3cae867c1c567e6a80b8842b',0,0,40,0,0,0,'nLpr9CIX2Q6tV7SCuXtTMhrGpdZhccufYFtedmi_Q2PQinlI3VIT3sqQOux9VVWE',1621022436,1621022436),
+(3,'leonardo55','Alicia Carvalho','joao.silva97@gmail.com','baf2fb610f38e6e803dfb83e596786b8',1,0,40,0,0,0,'TXeB2YHfehnAfIT29Qxa64WQydBw4asxr9n7qvthnlJho0pCy2EX_A9-l6fEM9x1',1621022507,1621022507),
+(4,'marli_macedo21','Giovanna Pereira','isabela43@gmail.com','2165fc563da826eab6da80ad3a1bccd0',1,0,40,0,0,0,'aAV9mRCaYufj3T-CATzDKTj5YeRtv75usbtpc_asXeJB8u5W53_6Ih7eJ1CzDWIg',1621022518,1621022518),
+(5,'bruna73','Henrique Barros','beatriz_albuquerque93@gmail.com','4c2b0706baa9475d92932d4f415a7738',1,0,40,0,0,0,'fMZIVbGnausECxzNDBr8vWYsfuaDMQpAHj1Aak8ilM-EPjsDChJZqhj2lVafy5pH',1621022530,1621022530),
+(6,'miguel.nogueira82','Marli Melo','murilo_albuquerque24@bol.com.br','64bb674604f46918d9b82bb81cdd5763',1,0,40,0,0,0,'CCEeT3t32d1E_p90CgSnJdBvUpRkmJPTHHjzOB5_o-K3B8xKxWImHauUL1v5AX5s',1621022542,1621022542),
+(7,'valentina_franco','Davi Lucca Melo','kleber11@yahoo.com','d2d8424ac5cb228e089823ed60fd0f27',1,0,40,0,0,0,'DQRQdVasvw_yVtgXS3XZdURTkASI6iq7jQUY6vlba2CjjSpzjQEeIPnIdDBa7g-n',1621022557,1621022557),
+(8,'alexandre.santos','Marcela Pereira','antonio41@live.com','1562ff6446db6363d8241200b9401a6b',1,0,40,0,0,0,'tuJfIZ4xodX21muSPnDDBkOedFauzqvtiPl64aJ_P-Qe0uHIywUPSqmMwc2E2YQK',1621022577,1621022577),
+(9,'joana_macedo','Renata Souza','joana11@hotmail.com','6942f198ec20ae0d5148f63cdb510ea5',1,0,40,0,0,0,'qSuteQy8Z9TpYC64ritx2QzHNN6ph__oIMVJ4Bs3oXKpopidHMlDLPoh4y3zzrM9',1621022591,1621022591),
+(10,'julia_barros','Marli Costa','enzo_xavier40@live.com','affcd66a7924598a9e7080ddcb01c42f',1,0,40,0,0,0,'1zbQxLH0SSwBqgkYrKmzC8t1gCpdxa37OUwbmJ0MCfQGfse369jtdB6eCi8R5N07',1621022603,1621022603);
 /*!40000 ALTER TABLE `mantis_user_table` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

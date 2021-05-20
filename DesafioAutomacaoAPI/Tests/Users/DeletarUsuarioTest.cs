@@ -19,7 +19,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
         [AllureXunit]
         public void DeletarUsuarioValido()
         {
-            int userId = UsersQueries.ListarUltimoUsuarioCadastrado().Id;
+            int userId = UsersQueries.ListarUsuarioInativo().Id;
 
             string urlDeletarUsario = $"api/rest/users/{userId}";
 
