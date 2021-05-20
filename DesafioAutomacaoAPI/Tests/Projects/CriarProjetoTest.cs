@@ -42,7 +42,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects
                 }
             };
 
-            var criarProjetoRequest = restManager.PerformPostRequest<CreateProjectResponse, ProjectRequest>(urlPostProjeto, criarProjetoBody);
+            var criarProjetoRequest = restManager.PerformPostRequest<ProjectResponse, ProjectRequest>(urlPostProjeto, criarProjetoBody);
 
             var resultadoListarProjetoBD = ProjectsQueries.ListarInformacoesProjeto(criarProjetoRequest.Data.Project.Id);
 
@@ -91,7 +91,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects
                 }
             };
 
-            var criarProjetoRequest = restManager.PerformPostRequest<CreateProjectResponse, ProjectRequest>(urlPostProjeto, criarProjetoBody);
+            var criarProjetoRequest = restManager.PerformPostRequest<ProjectResponse, ProjectRequest>(urlPostProjeto, criarProjetoBody);
  
             Steps.Step("Assertions", () =>
             {
