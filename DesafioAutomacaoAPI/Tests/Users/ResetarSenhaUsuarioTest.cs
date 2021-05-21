@@ -19,7 +19,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
         [AllureXunit]
         public void ResetSenhaUsuarioValido()
         { 
-            int userId = UsersQueries.ListarInformacoesUsuario("alexandre_souza55").Id;
+            int userId = UsersQueries.ListarInformacoesUsuario("leonardo55").Id;
 
             string urlResetSenha = $"api/rest/users/{userId}/reset";
 

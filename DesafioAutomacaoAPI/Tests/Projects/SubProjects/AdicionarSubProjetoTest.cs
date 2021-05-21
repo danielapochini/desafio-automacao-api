@@ -5,18 +5,16 @@ using DesafioAutomacaoAPI.Model;
 using DesafioAutomacaoAPI.Model.Request.Projects;
 using DesafioAutomacaoAPI.Utils;
 using DesafioAutomacaoAPI.Utils.Entities;
+using DesafioAutomacaoAPI.Utils.Helpers;
 using DesafioAutomacaoAPI.Utils.Queries.Projects;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
 {
+    //Add a subproject to the specified project id.
     public class AdicionarSubProjetoTest : IAssemblyFixture<TestBase>
     {
         private readonly RestManager restManager = new RestManager();
@@ -24,7 +22,8 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
 
         [AllureXunit]
         public void AdicionarSubProjetoIdProjetoValido()
-        { 
+        {
+            var subProjeto = ProjectsQueries.ListarInformacoesProjeto(5);
             var projetoPai = ProjectsQueries.ListarInformacoesProjeto("Projeto Mantis API REST");
 
             string mensagemEsperada = $"Subproject '{subProjeto.Id}' added to project '{projetoPai.Id}'";
@@ -52,6 +51,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
                 }
             });
 
+            AllureHelper.AdicionarResultado(adicionarSubProjetoRequest);
         }
 
         [AllureXunit]
@@ -86,6 +86,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
                 }
             });
 
+            AllureHelper.AdicionarResultado(adicionarSubProjetoRequest);
         }
 
         [AllureXunit]
@@ -121,6 +122,30 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
                 }
             });
 
+            AllureHelper.AdicionarResultado(adicionarSubProjetoRequest);
+
+        }
+
+        [AllureXunit]
+        public void AdicionarSubProjetoIdProjetoObrigatorio()
+        {
+            string mensagemEsperada = "Project id is missing.";
+
+            string urlPostSubProjeto = Uri.EscapeUriString("api/rest/projects/ /subprojects");
+
+            var adicionarSubProjetoRequest = restManager.PerformPostRequest(urlPostSubProjeto);
+
+            Steps.Step("Assertions", () =>
+            {
+                using (new AssertionScope())
+                {
+                    adicionarSubProjetoRequest.StatusCode.Should().Be(400);
+                    adicionarSubProjetoRequest.StatusDescription.Should().Be(mensagemEsperada);
+                    adicionarSubProjetoRequest.Content.Should().BeEmpty();
+                }
+            });
+
+            AllureHelper.AdicionarResultado(adicionarSubProjetoRequest);
         }
     }
 }

@@ -130,6 +130,13 @@ namespace DesafioAutomacaoAPI.Base
             return SendRequest<TResponse>(restRequest);
         }
 
+        public IRestResponse PerformPatchRequest(string url)
+        {
+            var restRequest = GetRestRequest(url, Method.PATCH);
+
+            return SendRequest(restRequest);
+        }
+
         public IRestResponse<TResponse> PerformPostRequest<TResponse, TBody>(string url, TBody body)
         {
             var restRequest = GetRestRequest(url, body, Method.POST); 
@@ -140,6 +147,13 @@ namespace DesafioAutomacaoAPI.Base
         public IRestResponse PerformPostRequest<TBody>(string url, TBody body)
         {
             var restRequest = GetRestRequest(url, body, Method.POST);
+
+            return SendRequest(restRequest);
+        }
+
+        public IRestResponse PerformPostRequest(string url)
+        {
+            var restRequest = GetRestRequest(url, Method.POST);
 
             return SendRequest(restRequest);
         }

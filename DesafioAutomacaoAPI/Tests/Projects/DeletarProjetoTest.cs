@@ -42,7 +42,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects
         [AllureXunit]
         public void DeletarProjetoValorInexistente()
         {
-            int projetoId = DadosFakeHelper.GerarId();
+            int projetoId = ProjectsQueries.ListarUltimoProjetoCadastrado().Id + DadosFakeHelper.GerarId();
             string mensagemEsperada = "Access denied for deleting project.";
 
             string urlDeletarProjeto = $"api/rest/projects/{projetoId}";
