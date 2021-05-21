@@ -51,7 +51,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects
         [AllureXunit]
         public void AtualizarProjetoIdsIncompativeis()
         {
-            int idProjeto = ProjectsQueries.ListarUltimoProjetoCadastrado().Id + 1;
+            int idProjeto = ProjectsQueries.ListarUltimoProjetoCadastrado().Id;
             string urlPatchProjeto = $"api/rest/projects/{idProjeto}";
 
             var atualizarProjetoBody = new ProjectRequest

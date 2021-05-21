@@ -44,7 +44,7 @@ namespace DesafioAutomacaoAPI.Tests.Filters
         [AllureXunit]
         public void ObterFiltroValorInexistente()
         {
-            int filtroId = DadosFakeHelper.GerarId();
+            int filtroId = FiltersQueries.ListarUltimoFiltroPublicoCadastrado().Id + DadosFakeHelper.GerarId();
             string urlObterFiltro = $"api/rest/filters/{filtroId}";
 
             var obterFiltroRequest = restManager.PerformGetRequest<FiltersResponse>(urlObterFiltro);
