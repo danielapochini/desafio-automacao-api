@@ -39,7 +39,7 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
  
 ## Metas
  - [x]  1) Implementar 50 scripts de testes que manipulem uma aplicação cuja interface é uma API REST. 
- > Foram implementados testes dos seguintes endpoints: `Users`, `Projects`, `Pages`, `Langs`, `Issues`, `Filters` e `Issues`. Utilizando algumas estratégias, como por exemplo, validação de parâmetros obrigatórios, parâmetros de entrada válidos, parâmetros de entrada inválidos, payload da response, HTTP Status Code e HTTP Status Description.
+ > Foram implementados testes dos seguintes endpoints: `Users`, `Projects`, `Pages`, `Langs`, `Issues`, `Filters` e `Issues`. Utilizando algumas estratégias, como por exemplo, validação de parâmetros obrigatórios, parâmetros de entrada válidos, parâmetros de entrada inválidos, payload da response, HTTP Status Code e HTTP Status Description e também a validação de dados das requests com o que foi inserido no banco de dados.
  - [x]  2) Alguns scripts devem ler dados de uma planilha Excel para implementar Data-Driven.
  - [x]  3) Notem que 50 scripts podem cobrir mais de 50 casos de testes se usarmos Data-Driven. Em outras palavras, implementar 50 CTs usando data-driven não é a mesma coisa que implementar 50 scripts.
  > A classe de teste `Users/CriarUsuarioDataDrivenTest.cs` e `Issues/CriarIssueDataDrivenTest.cs` estão realizando a leitura dos arquivos .CSV que estão no caminho `Utils/Resources/DataDriven/`
