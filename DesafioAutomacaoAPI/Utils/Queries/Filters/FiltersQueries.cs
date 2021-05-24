@@ -1,10 +1,6 @@
 ﻿using DesafioAutomacaoAPI.Utils.Entities;
-using DesafioAutomacaoAPI.Utils.Settings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DesafioAutomacaoAPI.Utils.Settings; 
+using System.Linq; 
 
 namespace DesafioAutomacaoAPI.Utils.Queries.Filters
 {

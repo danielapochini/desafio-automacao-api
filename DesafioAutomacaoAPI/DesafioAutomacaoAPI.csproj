@@ -49,6 +49,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Content Include="Utils\Resources\DataDriven\IssuesTestData.csv">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Utils\Resources\DataDriven\testdata.csv">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -80,6 +83,7 @@
 		<Content Remove="C:\Users\pocch\.nuget\packages\allure.commons\3.5.0.34\contentFiles\any\netstandard2.0\allureConfig.Template.json" />
 		<Content Remove="C:\Users\pocch\.nuget\packages\allure.xunit\1.0.0\contentFiles\any\netcoreapp2.0\allureConfig.Template.json" />
 		<None Remove="appsettings.json" />
+		<None Remove="Utils\Resources\DataDriven\issuestestdata.csv" />
 		<None Remove="Utils\Resources\DataDriven\testdata.csv" />
 		<None Remove="Utils\Resources\NodeJs\scriptDataAleatoria.js" />
 		<EmbeddedResource Include="appsettings.$(EnvironmentName).json" DependentUpon="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
