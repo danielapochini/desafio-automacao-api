@@ -13,14 +13,20 @@ using System;
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
-{
-    //Add a subproject to the specified project id.
+{ 
     public class AdicionarSubProjetoTest : IAssemblyFixture<TestBase>
     {
+        private const string suiteProjeto = "SubProjetos";
+        private const string subSuiteProjeto = "Adicionar SubProjetos Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#7df3b17a-6d0e-736e-fd1b-b546ef2ca048";
+
         private readonly RestManager restManager = new RestManager();
         private readonly ProjectsEntities subProjeto = ProjectsQueries.ListarUltimoProjetoCadastrado();
 
         [AllureXunit]
+        [AllureDescription("Adiciona um subprojeto em um projeto específico através do id")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void AdicionarSubProjetoIdProjetoValido()
         {
             var subProjeto = ProjectsQueries.ListarInformacoesProjeto(5);
@@ -55,6 +61,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor inválido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AdicionarSubProjetoIdProjetoInvalido()
         { 
             string projetoPaiId = DadosFakeHelper.GerarString();
@@ -90,6 +99,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor inexistente")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AdicionarSubProjetoIdProjetoInexistente()
         { 
             int projetoPaiId = subProjeto.Id + DadosFakeHelper.GerarId();
@@ -127,6 +139,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste de campo obrigatório")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AdicionarSubProjetoIdProjetoObrigatorio()
         {
             string mensagemEsperada = "Project id is missing.";

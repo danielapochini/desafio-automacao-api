@@ -1,5 +1,5 @@
 ﻿using Allure.Xunit;
-using Allure.Xunit.Attributes;
+using Allure.Xunit.Attributes; 
 using DesafioAutomacaoAPI.Base;
 using DesafioAutomacaoAPI.Model;
 using DesafioAutomacaoAPI.Model.Request.Projects;
@@ -13,12 +13,19 @@ using System;
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects
-{
+{ 
     public class AtualizarProjetoTest : IAssemblyFixture<TestBase>
-    {
+    { 
+        private const string suiteProjeto = "Projetos";
+        private const string subSuiteProjeto = "Atualizar Projetos Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#cb768a7c-4450-4d3d-c01a-4b7f03c4fab2";
+        
         private readonly RestManager restManager = new RestManager();
-
+            
         [AllureXunit]
+        [AllureDescription("Atualiza o projeto com valores válidos")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarProjetoDadosValidos()
         {
             int idProjeto = ProjectsQueries.ListarUltimoProjetoCadastrado().Id;
@@ -45,10 +52,13 @@ namespace DesafioAutomacaoAPI.Tests.Projects
                 }
             });
 
-            AllureHelper.AdicionarResultado(atualizarProjetoRequest);
+            AllureHelper.AdicionarResultado(atualizarProjetoRequest); 
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor de projetos incompatíveis")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarProjetoIdsIncompativeis()
         {
             int idProjeto = ProjectsQueries.ListarUltimoProjetoCadastrado().Id;
@@ -77,6 +87,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor inválido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarProjetoIdInvalido()
         {
             string idProjeto = DadosFakeHelper.GerarString();
@@ -105,6 +118,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor inexistente")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarProjetoIdInexistente()
         {
             int idProjeto = DadosFakeHelper.GerarId();
@@ -138,6 +154,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste de campo obrigatório")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarProjetoIdObrigatorio()
         {
             string mensagemEsperada = "Mandatory field 'id' is missing.";

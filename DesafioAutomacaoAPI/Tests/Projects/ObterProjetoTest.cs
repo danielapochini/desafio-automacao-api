@@ -11,12 +11,19 @@ using FluentAssertions.Execution;
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects
-{
+{ 
     public class ObterProjetoTest : IAssemblyFixture<TestBase>
-    {
+    { 
+        private const string suiteProjeto = "Projetos";
+        private const string subSuiteProjeto = "Obter Projetos Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#6f3e4516-6244-5928-68b4-0f83f2d83943";
+         
         private static readonly RestManager restManager = new RestManager();
 
         [AllureXunit]
+        [AllureDescription("Obtém um projeto com id válido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void ObterProjetoValorExistente()
         {
             var resultadoListarProjetoBD = ProjectsQueries.ListarUltimoProjetoCadastrado();
@@ -45,30 +52,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects
         }
 
         [AllureXunit]
-        public void ObterProjetoValorInexistente()
-        { 
-            int projetoId = ProjectsQueries.ListarUltimoProjetoCadastrado().Id + DadosFakeHelper.GerarId(); 
-            string mensagemEsperada = $"Project #{projetoId} not found"; 
-
-            string urlObterProjeto = $"api/rest/projects/{projetoId}"; 
-            var obterProjetoRequest = restManager.PerformGetRequest<ErrorMessageResponse>(urlObterProjeto);
-
-            Steps.Step("Assertions", () =>
-            {
-                using (new AssertionScope())
-                {
-                    obterProjetoRequest.StatusCode.Should().Be(404);
-                    obterProjetoRequest.StatusDescription.Should().Be(mensagemEsperada);
-                    obterProjetoRequest.Data.Message.Should().Be(mensagemEsperada);
-                    obterProjetoRequest.Data.Code.Should().Be(700);
-                    obterProjetoRequest.Data.Localized.Should().Be($"Project \"{projetoId}\" not found.");
-                }
-            });
-
-            AllureHelper.AdicionarResultado(obterProjetoRequest);
-        }
-
-        [AllureXunit]
+        [AllureDescription("Obtém todos os projetos acessíveis ao usuário")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void ObterTodosOsProjetos()
         {
             string urlObterProjeto = $"api/rest/projects";
@@ -88,5 +74,36 @@ namespace DesafioAutomacaoAPI.Tests.Projects
 
             AllureHelper.AdicionarResultado(obterProjetoRequest);
         }
+
+        [AllureXunit]
+        [AllureDescription("Teste com valor inexistente")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
+        public void ObterProjetoValorInexistente()
+        { 
+            int projetoId = DadosFakeHelper.GerarId(); 
+            string mensagemEsperada = $"Project #{projetoId} not found";
+            string mensagemEsperadaLocalizedString = $"Project \"{projetoId}\" not found.";
+            int codigoEsperado = 700;
+
+            string urlObterProjeto = $"api/rest/projects/{projetoId}"; 
+            var obterProjetoRequest = restManager.PerformGetRequest<ErrorMessageResponse>(urlObterProjeto);
+
+            Steps.Step("Assertions", () =>
+            {
+                using (new AssertionScope())
+                {
+                    obterProjetoRequest.StatusCode.Should().Be(404);
+                    obterProjetoRequest.StatusDescription.Should().Be(mensagemEsperada);
+                    obterProjetoRequest.Data.Message.Should().Be(mensagemEsperada);
+                    obterProjetoRequest.Data.Code.Should().Be(codigoEsperado);
+                    obterProjetoRequest.Data.Localized.Should().Be(mensagemEsperadaLocalizedString);
+                }
+            });
+
+            AllureHelper.AdicionarResultado(obterProjetoRequest);
+        }
+
+
     }
 }

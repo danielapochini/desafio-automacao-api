@@ -10,12 +10,19 @@ using FluentAssertions.Execution;
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects
-{
+{ 
     public class CriarProjetoTest : IAssemblyFixture<TestBase>
     {
+        private const string suiteProjeto = "Projetos";
+        private const string subSuiteProjeto = "Criar Projetos Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#16677869-82ac-50a0-e69f-c33986fbcf5f";
+
         private readonly RestManager restManager = new RestManager();
 
         [AllureXunit]
+        [AllureDescription("Cria um projeto válido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void CriarProjetoDadosValidos()
         {
             int idProjeto = ProjectsQueries.ListarUltimoProjetoCadastrado().Id + 1;
@@ -65,6 +72,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valores inválidos")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void CriarProjetoDadosInvalidos()
         {
             int idProjeto = ProjectsQueries.ListarUltimoProjetoCadastrado().Id + 1;

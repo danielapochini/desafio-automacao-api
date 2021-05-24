@@ -10,13 +10,20 @@ using System;
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects
-{
+{ 
     public class DeletarProjetoTest : IAssemblyFixture<TestBase>
     {
+        private const string suiteProjeto = "Projetos";
+        private const string subSuiteProjeto = "Deletar Projetos Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#8b02bb73-a6d7-0df2-f7a4-a1a2c3b2b06a";
+
         private readonly RestManager restManager = new RestManager();
 
         [AllureXunit]
-        public void DeletarProjetoValorExistente()
+        [AllureDescription("Deleta um projeto através de um id válido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
+        public void DeletarProjetoDadosValidos()
         {
             int projetoId = ProjectsQueries.ListarProjetoInativo().Id; 
 
@@ -40,9 +47,12 @@ namespace DesafioAutomacaoAPI.Tests.Projects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor inexistente")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void DeletarProjetoValorInexistente()
         {
-            int projetoId = ProjectsQueries.ListarUltimoProjetoCadastrado().Id + DadosFakeHelper.GerarId();
+            int projetoId = DadosFakeHelper.GerarId();
             string mensagemEsperada = "Access denied for deleting project.";
 
             string urlDeletarProjeto = $"api/rest/projects/{projetoId}";
@@ -64,6 +74,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects
 
 
         [AllureXunit]
+        [AllureDescription("Teste com valor inválido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void DeletarProjetoValorInvalido()
         {
             string projetoId = DadosFakeHelper.GerarString();
@@ -87,6 +100,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste de campo obrigatório")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void DeletarProjetoValorObrigatorio()
         { 
             string mensagemEsperada = "Mandatory field 'id' is missing.";

@@ -14,9 +14,16 @@ namespace DesafioAutomacaoAPI.Tests.Filters
 {
     public class ObterFiltroTest : IAssemblyFixture<TestBase>
     {
-        private readonly RestManager restManager = new RestManager();
+        private const string suiteProjeto = "Filtros";
+        private const string subSuiteProjeto = "Obter Filtros Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#93edb2eb-87aa-dd75-b92d-5ece286f8b0d";
 
-        [AllureXunit] 
+        private readonly RestManager restManager = new RestManager();
+         
+        [AllureXunit]
+        [AllureDescription("Obtém filtro com valor válido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void ObterFiltroValorExistente()
         {
             int filtroId = FiltersQueries.ListarUltimoFiltroPublicoCadastrado().Id;
@@ -42,9 +49,12 @@ namespace DesafioAutomacaoAPI.Tests.Filters
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com filtro inexistente")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void ObterFiltroValorInexistente()
         {
-            int filtroId = FiltersQueries.ListarUltimoFiltroPublicoCadastrado().Id + DadosFakeHelper.GerarId();
+            int filtroId = DadosFakeHelper.GerarId();
             string urlObterFiltro = $"api/rest/filters/{filtroId}";
 
             var obterFiltroRequest = restManager.PerformGetRequest<FiltersResponse>(urlObterFiltro);
@@ -62,6 +72,9 @@ namespace DesafioAutomacaoAPI.Tests.Filters
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com  múltiplos filtros")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Teste exploratório")]
+        [AllureLink(linkDocumentacao)]
         public void ObterTodosOsFiltrosCadastrados()
         { 
             string urlObterFiltro = $"api/rest/filters";

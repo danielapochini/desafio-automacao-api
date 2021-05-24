@@ -2,28 +2,27 @@
 using Allure.Xunit.Attributes;
 using DesafioAutomacaoAPI.Base;
 using DesafioAutomacaoAPI.Model;
-using DesafioAutomacaoAPI.Model.Request.Users;
-using DesafioAutomacaoAPI.Model.Users;
+using DesafioAutomacaoAPI.Model.Request.Users; 
 using DesafioAutomacaoAPI.Utils;
-using DesafioAutomacaoAPI.Utils.Helpers;
-using DesafioAutomacaoAPI.Utils.Queries.Users;
+using DesafioAutomacaoAPI.Utils.Helpers; 
 using FluentAssertions;
-using FluentAssertions.Execution;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+using FluentAssertions.Execution; 
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Users
 { 
     public class CriarUsuarioRegexTest : IAssemblyFixture<TestBase>
     {
+        private const string suiteProjeto = "Usuários";
+        private const string subSuiteProjeto = "Criar Usuários Regex Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#dd4a3af4-be79-7070-ff9a-e1632c15840e";
+
         private readonly RestManager restManager = new RestManager(); 
 
         [AllureXunit]
+        [AllureDescription("Criação de usuários utilizando validação Regex para usernames inválidos")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void CriarUserInvalidoUsernameRegex()
         {
             string urlPostUsuario = "api/rest/users/";
@@ -64,7 +63,10 @@ namespace DesafioAutomacaoAPI.Tests.Users
             } 
         }
 
-        [AllureXunit]
+        [AllureXunit] 
+        [AllureDescription("Criação de usuários utilizando validação Regex para emails inválidos")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void CriarUserInvalidoEmailRegex()
         {
             string urlPostUsuario = "api/rest/users/";

@@ -10,13 +10,18 @@ using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Pages
 {
-    // Get information necessary to render an issue view page for the specified issue.
-    // https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#ddd095f8-0905-ae9d-268b-a24cddfa8740
     public class ObterPaginaIssuesTest : IAssemblyFixture<TestBase>
-    { 
+    {
+        private const string suiteProjeto = "Páginas";
+        private const string subSuiteProjeto = "Obter Páginas Issues Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#ddd095f8-0905-ae9d-268b-a24cddfa8740";
+
         private readonly RestManager restManager = new RestManager();
 
         [AllureXunit]
+        [AllureDescription("Teste com valor de página inválido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void ObterPaginaIssuesValorInexistente()
         {
             int issueId = DadosFakeHelper.GerarId();

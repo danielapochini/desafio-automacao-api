@@ -12,14 +12,21 @@ using System;
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
-{
+{ 
     public class DeletarSubProjetoTest : IAssemblyFixture<TestBase>
     {
+        private const string suiteProjeto = "SubProjetos";
+        private const string subSuiteProjeto = "Deletar SubProjetos Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#941a1e99-6b8f-4ced-ef3f-ee1bf6595a0c";
+
         private readonly SubProjectsEntities informacoesBD = SubProjectsQueries.ListarUltimoSubProjetoCadastrado();
 
         private static readonly RestManager restManager = new RestManager();
 
         [AllureXunit]
+        [AllureDescription("Deleta um subprojeto válido de um projeto pai")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void DeletarSubProjetoValorExistente()
         {
             int idProjeto = informacoesBD.ParentId;
@@ -45,6 +52,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor inexistente")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void DeletarSubProjetoValorInexistente()
         {
             int idProjeto = informacoesBD.ParentId;
@@ -74,6 +84,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com projeto inválido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void DeletarSubProjetoValorInvalido()
         {
             int idProjeto = informacoesBD.ParentId;
@@ -101,8 +114,10 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
             AllureHelper.AdicionarResultado(deletarSubProjetoRequest);
         }
 
-
         [AllureXunit]
+        [AllureDescription("Teste com valor obrigatório")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void DeletarSubProjetoValorObrigatorio()
         {
             int idProjeto = informacoesBD.ParentId;

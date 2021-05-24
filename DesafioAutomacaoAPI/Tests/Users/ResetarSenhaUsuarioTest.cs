@@ -1,22 +1,27 @@
 ﻿using Allure.Xunit;
 using Allure.Xunit.Attributes;
 using DesafioAutomacaoAPI.Base;
-using DesafioAutomacaoAPI.Model;
-using DesafioAutomacaoAPI.Utils;
+using DesafioAutomacaoAPI.Model; 
 using DesafioAutomacaoAPI.Utils.Helpers;
 using DesafioAutomacaoAPI.Utils.Queries.Users;
 using FluentAssertions;
-using FluentAssertions.Execution; 
-using Xunit;
+using FluentAssertions.Execution;  
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Users
 { 
     public class ResetarSenhaUsuarioTest : IAssemblyFixture<TestBase>
     {
+        private const string suiteProjeto = "Usuários";
+        private const string subSuiteProjeto = "Restar Senha Usuários Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#31bdd5d1-15a5-9c2b-8d9f-6b866d1f3260";
+         
         private readonly RestManager restManager = new RestManager();
 
         [AllureXunit]
+        [AllureDescription("Reseta a senha de um usuário específico através de um id válido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void ResetSenhaUsuarioValido()
         { 
             int userId = UsersQueries.ListarInformacoesUsuario("leonardo55").Id;
@@ -39,10 +44,16 @@ namespace DesafioAutomacaoAPI.Tests.Users
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor inválido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void ResetSenhaUsuarioInvalido()
         {
             int userId = UsersQueries.ListarUltimoUsuarioCadastrado().Id + 2;
+
+            string mensagemEsperadaLocalizedString = "Invalid value for 'id'";
             string mensagemEsperada = "Invalid user id";
+            int codigoEsperado = 29;
 
             string urlResetSenha = $"api/rest/users/{userId}/reset";
 
@@ -54,8 +65,8 @@ namespace DesafioAutomacaoAPI.Tests.Users
                 {
                     resetarSenhaRequest.StatusCode.Should().Be(400);
                     resetarSenhaRequest.Data.Message.Should().Be(mensagemEsperada);
-                    resetarSenhaRequest.Data.Code.Should().Be(29);
-                    resetarSenhaRequest.Data.Localized.Should().Be("Invalid value for 'id'");
+                    resetarSenhaRequest.Data.Code.Should().Be(codigoEsperado);
+                    resetarSenhaRequest.Data.Localized.Should().Be(mensagemEsperadaLocalizedString);
                     resetarSenhaRequest.StatusDescription.Should().Be(mensagemEsperada);
                 }
             });
@@ -64,11 +75,18 @@ namespace DesafioAutomacaoAPI.Tests.Users
         }
 
         [AllureXunit]
+        [AllureDescription("Reset de senha utilizando único usuário administrador ativo")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void ResetarUnicoAdministradorAtivo()
         {
-            int userId = UsersQueries.ListarAdministrador().Id;
+            int codigoEsperado = 808;
             string mensagemEsperada = "Resetting last administrator not allowed";
-
+            string mensagemEsperadaLocalizedString = "You cannot remove or demote the last administrator account. To perform the action you requested, " +
+                        "you first need to create another administrator account.";
+             
+            int userId = UsersQueries.ListarAdministrador().Id;
+             
             string urlResetSenha = $"api/rest/users/{userId}/reset";
 
             var resetarSenhaRequest = restManager.PerformPutRequest<ErrorMessageResponse>(urlResetSenha);
@@ -80,9 +98,8 @@ namespace DesafioAutomacaoAPI.Tests.Users
                     resetarSenhaRequest.StatusCode.Should().Be(400);
                     resetarSenhaRequest.StatusDescription.Should().Be(mensagemEsperada);
                     resetarSenhaRequest.Data.Message.Should().Be(mensagemEsperada);
-                    resetarSenhaRequest.Data.Code.Should().Be(808);
-                    resetarSenhaRequest.Data.Localized.Should().Be("You cannot remove or demote the last administrator account. To perform the action you requested, " +
-                        "you first need to create another administrator account.");
+                    resetarSenhaRequest.Data.Code.Should().Be(codigoEsperado);
+                    resetarSenhaRequest.Data.Localized.Should().Be(mensagemEsperadaLocalizedString);
                 }
             });
 

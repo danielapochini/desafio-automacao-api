@@ -4,28 +4,26 @@ using DesafioAutomacaoAPI.Base;
 using DesafioAutomacaoAPI.Model.Response.Langs;
 using DesafioAutomacaoAPI.Utils.Helpers;
 using FluentAssertions;
-using FluentAssertions.Execution;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FluentAssertions.Execution; 
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Langs
-{
-    // Get the specified localized string.
-    // If string doesn't exist, it will be silently skipped.
-    // https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#f4db831d-c31c-6c98-df8d-b16f490f4247
-
+{ 
     public class ObterStringLocalizedTest : IAssemblyFixture<TestBase>
     {
+        private const string suiteProjeto = "Linguagem";
+        private const string subSuiteProjeto = "Obter String Localized Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#ddd095f8-0905-ae9d-268b-a24cddfa8740";
+
+        private const string parametroStringValido = "all_projects";
+        private const string parametroStringInvalido = "does_not_exist";
+
         private readonly RestManager restManager = new RestManager();
 
-        const string parametroStringValido = "all_projects";
-        const string parametroStringInvalido = "does_not_exist";
-
         [AllureXunit]
+        [AllureDescription("Teste com valor válido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void ObterStringLocalizedValorValido()
         { 
             string urlObterString = $"api/rest/lang?string={parametroStringValido}";
@@ -47,6 +45,9 @@ namespace DesafioAutomacaoAPI.Tests.Langs
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor inexistente")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void ObterStringLocalizedValorInexistente()
         { 
             string urlObterString = $"api/rest/lang?string={parametroStringInvalido}";
@@ -67,6 +68,9 @@ namespace DesafioAutomacaoAPI.Tests.Langs
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com múltiplos valores")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Teste Exploratório")]
+        [AllureLink(linkDocumentacao)]
         public void ObterStringLocalizedMultiplosValores()
         {
             string parametroStringValidoDois = "move_bugs";

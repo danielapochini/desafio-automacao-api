@@ -13,16 +13,25 @@ using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
 {
-    //Update the subproject relationship properties.
+    // Update the subproject relationship properties.
+    // https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#f46c8545-b34a-b0f4-daa3-07fcadc81762
+
     public class AtualizarSubProjetoTest : IAssemblyFixture<TestBase>
     {
+        private const string suiteProjeto = "SubProjetos";
+        private const string subSuiteProjeto = "Atualizar SubProjetos Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#f46c8545-b34a-b0f4-daa3-07fcadc81762";
+
         private readonly RestManager restManager = new RestManager();
 
         [AllureXunit]
+        [AllureDescription("Atualiza o relacionamento de um subprojeto com um projeto válido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarSubProjetoIdProjetoValido()
         {
-            int idProjeto = 2;
-            int idSubProjeto = 3;
+            int idProjeto = 1;
+            int idSubProjeto = 2;
 
             string mensagemEsperada = $"Subproject '{idSubProjeto}' updated"; 
 
@@ -53,6 +62,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste de subprojeto não vinculado ao projeto")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarSubProjetoIdProjetoNaoVinculado()
         {
             int idProjeto = 2;
@@ -91,9 +103,12 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor inexistente")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarSubProjetoIdInexistente()
         {
-            int gerarIds = ProjectsQueries.ListarUltimoProjetoCadastrado().Id + DadosFakeHelper.GerarId();
+            int gerarIds = DadosFakeHelper.GerarId();
             int idProjeto = gerarIds;
             int idSubProjeto = gerarIds;
 
@@ -130,6 +145,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com projeto inválido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarSubProjetoIdProjetoInvalido()
         {
             string idProjeto = DadosFakeHelper.GerarString();
@@ -168,6 +186,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com subprojeto inválido")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarSubProjetoIdSubProjetoInvalido()
         {
             int idProjeto = ProjectsQueries.ListarUltimoProjetoCadastrado().Id;
@@ -206,6 +227,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor obrigatório")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarSubProjetoIdProjetoObrigatorio()
         {
             int subProjetoId = DadosFakeHelper.GerarId();
@@ -230,6 +254,9 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         }
 
         [AllureXunit]
+        [AllureDescription("Teste com valor obrigatório")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Exceção")]
+        [AllureLink(linkDocumentacao)]
         public void AtualizarSubProjetoIdSubProjetoObrigatorio()
         {
             int idProjeto = DadosFakeHelper.GerarId();
