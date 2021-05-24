@@ -95,14 +95,48 @@ namespace DesafioAutomacaoAPI.Base
             return restResponse;
         }
 
+        public IRestResponse PerformDeleteRequest(string url)
+        {
+            var restRequest = GetRestRequest(url, Method.DELETE);
+
+            return SendRequest(restRequest);
+        }
+
+        public IRestResponse<TResponse> PerformDeleteRequest<TResponse>(string url)
+        {
+            var restRequest = GetRestRequest(url, Method.DELETE);
+
+            return SendRequest<TResponse>(restRequest);
+        }
+
         public IRestResponse<TResponse> PerformGetRequest<TResponse>(string url) 
         {
-            IRestRequest restRequest = GetRestRequest(url, Method.GET);
-            IRestResponse<TResponse> restResponse = SendRequest<TResponse>(restRequest);
+            var restRequest = GetRestRequest(url, Method.GET); 
 
-            return restResponse;
+            return SendRequest<TResponse>(restRequest);
         }
-         
+
+        public IRestResponse PerformPatchRequest<TBody>(string url, TBody body)
+        {
+            var restRequest = GetRestRequest(url, body, Method.PATCH);
+
+            return SendRequest(restRequest);
+        }
+
+        public IRestResponse<TResponse> PerformPatchRequest<TResponse, TBody>(string url, TBody body)
+        {
+            var restRequest = GetRestRequest(url, body, Method.PATCH);
+
+            return SendRequest<TResponse>(restRequest);
+        }
+
+        public IRestResponse PerformPatchRequest(string url)
+        {
+            var restRequest = GetRestRequest(url, Method.PATCH);
+
+            return SendRequest(restRequest);
+        }
+
         public IRestResponse<TResponse> PerformPostRequest<TResponse, TBody>(string url, TBody body)
         {
             var restRequest = GetRestRequest(url, body, Method.POST); 
@@ -115,6 +149,27 @@ namespace DesafioAutomacaoAPI.Base
             var restRequest = GetRestRequest(url, body, Method.POST);
 
             return SendRequest(restRequest);
+        }
+
+        public IRestResponse PerformPostRequest(string url)
+        {
+            var restRequest = GetRestRequest(url, Method.POST);
+
+            return SendRequest(restRequest);
+        }
+
+        public IRestResponse PerformPutRequest(string url)
+        {
+            var restRequest = GetRestRequest(url, Method.PUT);
+
+            return SendRequest(restRequest);
+        }
+
+        public IRestResponse<TResponse> PerformPutRequest<TResponse>(string url)
+        {
+            var restRequest = GetRestRequest(url, Method.PUT);
+
+            return SendRequest<TResponse>(restRequest);
         }
     }
 }

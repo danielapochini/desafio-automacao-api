@@ -29,14 +29,20 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [Moment.js](https://momentjs.com/docs/#/use-it/) - Biblioteca JavaScript para manipulação de datas
 
 ## Arquitetura
+
+| Diretório    | Funcionalidade     |
+| ------------ | ------------ |
+| **Base**     | Framework desenvolvido para as utilização das APIs REST do projeto | 
+| **Model**    | Representam a estrutura e o modelo esperado do que será enviado/recebido| 
+| **Tests**    | Classes de testes separadas em pastas e classes de acordo com a funcionalidade e endpoint | 
+| **Utils**    | Classes de apoio para criação de entidades do banco de dados e queries de consulta, geração de relatórios de testes, classes helpers para a execução dos testes e configurações do projeto| 
  
-| Diretório | Funcionalidade |
-| ------ | ------ | 
- 
- ## Metas
+## Metas
+ - [x]  1) Implementar 50 scripts de testes que manipulem uma aplicação cuja interface é uma API REST. 
+ > Foram implementados testes dos seguintes endpoints: `Users`, `Projects`, `Pages`, `Langs`, `Issues`, `Filters` e `Issues`. Utilizando algumas estratégias, como por exemplo, validação de parâmetros obrigatórios, parâmetros de entrada válidos, parâmetros de entrada inválidos, payload da response, HTTP Status Code e HTTP Status Description.
  - [x]  2) Alguns scripts devem ler dados de uma planilha Excel para implementar Data-Driven.
  - [x]  3) Notem que 50 scripts podem cobrir mais de 50 casos de testes se usarmos Data-Driven. Em outras palavras, implementar 50 CTs usando data-driven não é a mesma coisa que implementar 50 scripts.
- > A classe de teste `Users/CriarUsuarioDataDrivenTest.cs` está realizando a leitura do arquivo .CSV que está no caminho `Utils/Resources/DataDriven/`
+ > A classe de teste `Users/CriarUsuarioDataDrivenTest.cs` e Issues/CriarIssueDataDrivenTest.cs` estão realizando a leitura dos arquivos .CSV que estão no caminho `Utils/Resources/DataDriven/`
  - [x]  4) O projeto deve tratar autenticação.
  > O token para utilização da API é gerado pelo usuário administrador no painel `Tokens API` em sua conta e este Token é passado no Header da requisição, conforme a documentação da [API Mantis](https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#intro)
  - [x]  5) Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares).
@@ -55,6 +61,7 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
  > Os testes estão implementados na pipeline do Jenkins para o ambiente de `DEV`, o script de configuração da pipeline está disponível na raiz do projeto. O projeto possui um `webhook` que a cada push realizado no repositório do GitHub é disparado automaticamente um novo build no Jenkins.
 
 ## Referências
+- [Estratégia de Testes de API Rest](https://www.youtube.com/watch?v=BkSKRXinpDE): Mapeamento da estratégia dos testes a serem realizados
 - [Configuration Files XUnit](https://xunit.net/docs/configuration-files): Documentação de configuração do runner do XUnit, utilizado para setar os testes em paralelo e em threads.
 - [Default Config MantisBT](https://fossies.org/linux/mantisbt/config_defaults_inc.php): Documentação de configuração do MantisBT, utilizado para entender o padrão de e-mail e username válidos.
 - [Using Environment Variables in XUnit](https://spicychillysoft.com/2019/10/03/using-environment-variables-in-xunit/): Utilização de múltiplas variáveis de ambiente no XUnit.
@@ -66,3 +73,4 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
 - [Backing up Database in MySQL using C#](https://stackoverflow.com/a/12311685): Utilização da ferramenta MySqlBackup.NET para restore do banco de dados
 - [Process Class](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.process?view=net-5.0) / [RedirectStandardOutput Property](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo.redirectstandardoutput?redirectedfrom=MSDN&view=net-5.0#System_Diagnostics_ProcessStartInfo_RedirectStandardOutput): Utilização de processos em .NET
 - [Start NodeJS Application from C#](https://stackoverflow.com/questions/35312174/start-nodejs-application-from-c-sharp-web-form-application): Execução de processos em NodeJs
+- [Xunit Assembly Fixture](https://github.com/JDCain/Xunit.Extensions.AssemblyFixture) / [Shared State Between Tests](https://stackoverflow.com/questions/41878972/share-state-between-tests-that-run-in-parallel-with-xunit-net/57295764#57295764): Fixture compartilhada durante a execução de testes em paralelo.

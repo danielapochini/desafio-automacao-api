@@ -48,10 +48,22 @@ namespace DesafioAutomacaoAPI.Utils
 
             var data = new
             {
-                Id = faker.Random.Number(1, 100)
+                Id = faker.Random.Number(15, 100)
             };
 
             return data.Id;
+        }
+
+        public static string GerarString()
+        {
+            var faker = new Faker("pt_BR");
+
+            var data = new
+            {
+                String = faker.Random.String2(10)
+            };
+
+            return data.String;
         }
     }
 }

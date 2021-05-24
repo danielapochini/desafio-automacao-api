@@ -1,6 +1,10 @@
 ﻿using DesafioAutomacaoAPI.Utils.Helpers;
 using DesafioAutomacaoAPI.Utils.Settings;
 using System;
+using Xunit;
+using Xunit.Extensions.AssemblyFixture;
+
+[assembly: TestFramework(AssemblyFixtureFramework.TypeName, AssemblyFixtureFramework.AssemblyName)]
 
 namespace DesafioAutomacaoAPI.Base
 {

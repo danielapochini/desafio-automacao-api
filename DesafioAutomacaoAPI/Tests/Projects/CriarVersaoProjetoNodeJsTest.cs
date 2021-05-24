@@ -5,23 +5,24 @@ using DesafioAutomacaoAPI.Model.Request.Projects;
 using DesafioAutomacaoAPI.Utils;
 using DesafioAutomacaoAPI.Utils.Helpers;
 using FluentAssertions;
-using FluentAssertions.Execution;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+using FluentAssertions.Execution; 
+using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects
-{
-   [Collection("Mantis")]
-    public class CriarVersaoProjetoTest
+{ 
+    public class CriarVersaoProjetoNodeJsTest : IAssemblyFixture<TestBase>
     {
-        private readonly RestManager restManager = new RestManager(); 
+        private const string suiteProjeto = "Projetos";
+        private const string subSuiteProjeto = "Criar Versão de Projeto Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#d9c16d5e-cae9-20e6-2b46-556c68c451cc";
+
+        private readonly RestManager restManager = new RestManager();
 
         [AllureXunit]
-        public void CriarNovaVersaoDeProjeto()
+        [AllureDescription("Teste utilizando NodeJs para criar nova versão de projeto")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
+        public void CriarNovaVersaoDeProjetoNodeJs()
         {
             int idProjeto = DadosFakeHelper.GerarId();
 
