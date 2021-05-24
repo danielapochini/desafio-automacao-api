@@ -42,7 +42,7 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
  > Foram implementados testes dos seguintes endpoints: `Users`, `Projects`, `Pages`, `Langs`, `Issues`, `Filters` e `Issues`. Utilizando algumas estratégias, como por exemplo, validação de parâmetros obrigatórios, parâmetros de entrada válidos, parâmetros de entrada inválidos, payload da response, HTTP Status Code e HTTP Status Description.
  - [x]  2) Alguns scripts devem ler dados de uma planilha Excel para implementar Data-Driven.
  - [x]  3) Notem que 50 scripts podem cobrir mais de 50 casos de testes se usarmos Data-Driven. Em outras palavras, implementar 50 CTs usando data-driven não é a mesma coisa que implementar 50 scripts.
- > A classe de teste `Users/CriarUsuarioDataDrivenTest.cs` e Issues/CriarIssueDataDrivenTest.cs` estão realizando a leitura dos arquivos .CSV que estão no caminho `Utils/Resources/DataDriven/`
+ > A classe de teste `Users/CriarUsuarioDataDrivenTest.cs` e `Issues/CriarIssueDataDrivenTest.cs` estão realizando a leitura dos arquivos .CSV que estão no caminho `Utils/Resources/DataDriven/`
  - [x]  4) O projeto deve tratar autenticação.
  > O token para utilização da API é gerado pelo usuário administrador no painel `Tokens API` em sua conta e este Token é passado no Header da requisição, conforme a documentação da [API Mantis](https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#intro)
  - [x]  5) Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares).
@@ -56,7 +56,7 @@ Optei por esta versão pois trata-se de uma imagem Docker mais atualizada do Man
  - [x] 9) A massa de testes deve ser preparada neste projeto, seja com scripts carregando massa nova no BD ou com restore de banco de dados.
  > A massa de dados está sendo tratada através do método `DatabaseHelper.ResetMantisDatabase()` que realiza o restore do BD antes da execução dos testes.
  - [x] 10) Executar testes em paralelo. Pelo menos duas threads (25 testes cada).
- > O arquivo `xunit.runner.json` na raiz do projeto está configurado para realizar a execução dos testes em paralelo e em duas threads.
+ > O arquivo `xunit.runner.json` na raiz do projeto está configurado para realizar a execução dos testes em paralelo e em **quatro** threads.
  - [x]  11) Testes deverão ser agendados pelo Jenkins, CircleCI, TFS ou outra ferramenta de CI que preferir.
  > Os testes estão implementados na pipeline do Jenkins para o ambiente de `DEV`, o script de configuração da pipeline está disponível na raiz do projeto. O projeto possui um `webhook` que a cada push realizado no repositório do GitHub é disparado automaticamente um novo build no Jenkins.
 
