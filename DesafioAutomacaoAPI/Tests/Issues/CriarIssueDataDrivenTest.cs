@@ -5,12 +5,7 @@ using DesafioAutomacaoAPI.Model.Request.Issues;
 using DesafioAutomacaoAPI.Model.Response.Issues;
 using DesafioAutomacaoAPI.Utils.Helpers;
 using FluentAssertions;
-using FluentAssertions.Execution;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FluentAssertions.Execution; 
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Issues

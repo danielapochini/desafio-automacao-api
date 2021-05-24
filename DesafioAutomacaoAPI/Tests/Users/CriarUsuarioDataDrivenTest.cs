@@ -19,7 +19,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
 
         private static readonly RestManager restManager = new RestManager();
          
-        [AllureXunitTheory, CsvData("Utils/Resources/DataDriven/testdata.csv")]
+        [AllureXunitTheory, CsvData("Utils/Resources/DataDriven/UsersTestData.csv")]
         [AllureDescription("Criação de usuários utilizando um arquivo .csv")]
         [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
         [AllureLink(linkDocumentacao)]

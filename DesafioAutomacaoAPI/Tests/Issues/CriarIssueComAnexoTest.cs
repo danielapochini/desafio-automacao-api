@@ -6,18 +6,24 @@ using DesafioAutomacaoAPI.Model.Response.Issues;
 using DesafioAutomacaoAPI.Utils.Helpers; 
 using DesafioAutomacaoAPI.Utils.Queries.Issues;
 using FluentAssertions;
-using FluentAssertions.Execution;
-using System;
+using FluentAssertions.Execution; 
 using System.Collections.Generic; 
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Issues
 {
     public class CriarIssueComAnexoTest : IAssemblyFixture<TestBase>
-    {
+    { 
+        private const string suiteProjeto = "Issues";
+        private const string subSuiteProjeto = "Criar Issues Data Driven Test";
+        private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#028dda86-2165-b74a-490b-7e0487eeb853";
+         
         private static readonly RestManager restManager = new RestManager();
 
-        [AllureXunit]
+        [AllureXunit] 
+        [AllureDescription("Criação de issues utilizando um arquivo .csv")]
+        [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
+        [AllureLink(linkDocumentacao)]
         public void CriarIssueUtilizandoAnexoBase64()
         { 
             string textoEncode = EncodeHelper.Base64Encode("Arquivo para teste");
