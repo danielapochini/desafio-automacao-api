@@ -83,5 +83,7 @@
 		<None Remove="Utils\Resources\DataDriven\testdata.csv" />
 		<None Remove="Utils\Resources\NodeJs\scriptDataAleatoria.js" />
 		<EmbeddedResource Include="appsettings.$(EnvironmentName).json" DependentUpon="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
-	</ItemGroup> 
+	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties allureconfig_1json__JsonSchema="allure" /></VisualStudio></ProjectExtensions> 
 </Project>
