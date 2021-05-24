@@ -47,7 +47,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects
         [AllureXunit]
         public void ObterProjetoValorInexistente()
         { 
-            int projetoId = DadosFakeHelper.GerarId(); 
+            int projetoId = ProjectsQueries.ListarUltimoProjetoCadastrado().Id + DadosFakeHelper.GerarId(); 
             string mensagemEsperada = $"Project #{projetoId} not found"; 
 
             string urlObterProjeto = $"api/rest/projects/{projetoId}"; 

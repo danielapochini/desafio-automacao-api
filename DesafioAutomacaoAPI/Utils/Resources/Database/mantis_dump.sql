@@ -674,6 +674,8 @@ CREATE TABLE `mantis_project_hierarchy_table` (
 LOCK TABLES `mantis_project_hierarchy_table` WRITE;
 /*!40000 ALTER TABLE `mantis_project_hierarchy_table` DISABLE KEYS */;
 INSERT INTO `mantis_project_hierarchy_table` (`child_id`, `parent_id`, `inherit_parent`) VALUES
+	(2, 1, 1),
+	(3, 2, 1),
 	(4, 2, 1);
 /*!40000 ALTER TABLE `mantis_project_hierarchy_table` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -22,7 +22,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         public void AtualizarSubProjetoIdProjetoValido()
         {
             int idProjeto = 2;
-            int idSubProjeto = 4;
+            int idSubProjeto = 3;
 
             string mensagemEsperada = $"Subproject '{idSubProjeto}' updated"; 
 
@@ -60,6 +60,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
 
             string mensagemEsperada = $"Project '{idSubProjeto}' is not a subproject of '{idProjeto}'";
             string mensagemEsperadaLocalizedString = $"Project \"{idSubProjeto}\" is not a subproject of \"{idProjeto}\".";
+            int codigoEsperado = 705;
 
             string urlPatchProjeto = $"api/rest/projects/{idProjeto}/subprojects/{idSubProjeto}";
 
@@ -81,7 +82,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
                     atualizarSubProjetoRequest.StatusCode.Should().Be(400);
                     atualizarSubProjetoRequest.StatusDescription.Should().Be(mensagemEsperada);
                     atualizarSubProjetoRequest.Data.Message.Should().Be(mensagemEsperada);
-                    atualizarSubProjetoRequest.Data.Code.Should().Be(705);
+                    atualizarSubProjetoRequest.Data.Code.Should().Be(codigoEsperado);
                     atualizarSubProjetoRequest.Data.Localized.Should().Be(mensagemEsperadaLocalizedString);
                 }
             });
@@ -98,6 +99,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
 
             string mensagemEsperada = $"Project '{idProjeto}' not found";
             string mensagemEsperadaLocalizedString = $"Project \"{idProjeto}\" not found.";
+            int codigoEsperado = 700;
 
             string urlPatchProjeto = $"api/rest/projects/{idProjeto}/subprojects/{idSubProjeto}";
 
@@ -119,7 +121,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
                     atualizarSubProjetoRequest.StatusCode.Should().Be(404);
                     atualizarSubProjetoRequest.StatusDescription.Should().Be(mensagemEsperada);
                     atualizarSubProjetoRequest.Data.Message.Should().Be(mensagemEsperada);
-                    atualizarSubProjetoRequest.Data.Code.Should().Be(700);
+                    atualizarSubProjetoRequest.Data.Code.Should().Be(codigoEsperado);
                     atualizarSubProjetoRequest.Data.Localized.Should().Be(mensagemEsperadaLocalizedString);
                 }
             });
@@ -135,6 +137,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
 
             string mensagemEsperada = "'project_id' must be numeric";
             string mensagemEsperadaLocalizedString = "Invalid value for 'project_id'";
+            int codigoEsperado = 29;
 
             string urlPatchProjeto = $"api/rest/projects/{idProjeto}/subprojects/{idSubProjeto}";
 
@@ -156,7 +159,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
                     atualizarSubProjetoRequest.StatusCode.Should().Be(400);
                     atualizarSubProjetoRequest.StatusDescription.Should().Be(mensagemEsperada);
                     atualizarSubProjetoRequest.Data.Message.Should().Be(mensagemEsperada);
-                    atualizarSubProjetoRequest.Data.Code.Should().Be(29);
+                    atualizarSubProjetoRequest.Data.Code.Should().Be(codigoEsperado);
                     atualizarSubProjetoRequest.Data.Localized.Should().Be(mensagemEsperadaLocalizedString);
                 }
             });
@@ -172,6 +175,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
 
             string mensagemEsperada = "'subproject_id' must be numeric";
             string mensagemEsperadaLocalizedString = "Invalid value for 'subproject_id'";
+            int codigoEsperado = 29;
 
             string urlPatchProjeto = $"api/rest/projects/{idProjeto}/subprojects/{idSubProjeto}";
 
@@ -193,7 +197,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
                     atualizarSubProjetoRequest.StatusCode.Should().Be(400);
                     atualizarSubProjetoRequest.StatusDescription.Should().Be(mensagemEsperada);
                     atualizarSubProjetoRequest.Data.Message.Should().Be(mensagemEsperada);
-                    atualizarSubProjetoRequest.Data.Code.Should().Be(29);
+                    atualizarSubProjetoRequest.Data.Code.Should().Be(codigoEsperado);
                     atualizarSubProjetoRequest.Data.Localized.Should().Be(mensagemEsperadaLocalizedString);
                 }
             });
