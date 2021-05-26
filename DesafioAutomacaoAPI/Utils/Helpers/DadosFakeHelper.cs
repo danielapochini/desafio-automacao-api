@@ -1,14 +1,9 @@
 ﻿using Bogus;
 using DesafioAutomacaoAPI.Model.Request.Users;
-using DesafioAutomacaoAPI.Model.Users;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
 
 namespace DesafioAutomacaoAPI.Utils
 {
-    public class DadosFakeHelper
+    public static class DadosFakeHelper
     {
         public static string GerarNome()
         {

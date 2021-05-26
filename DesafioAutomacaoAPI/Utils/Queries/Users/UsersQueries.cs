@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DesafioAutomacaoAPI.Utils.Queries.Users
 {
-    public class UsersQueries
+    public static class UsersQueries
     {
         public static UsersEntities ListarInformacoesUsuario(string userName)
         {

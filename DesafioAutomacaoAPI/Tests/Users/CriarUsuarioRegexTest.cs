@@ -43,7 +43,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
 
             var validatorUsername = RegexHelper.IsValidUsername(userBodyRequest.Username);
 
-            if (validatorUsername == false)
+            if (!validatorUsername)
             {
 
                 var criarUsuarioRequest = restManager.PerformPostRequest<ErrorMessageResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
@@ -87,7 +87,7 @@ namespace DesafioAutomacaoAPI.Tests.Users
 
             var validatorEmail = RegexHelper.IsValidAddress(userBodyRequest.Email);
 
-            if (validatorEmail == false)
+            if (!validatorEmail)
             {
                 var criarUsuarioRequest = restManager.PerformPostRequest<ErrorMessageResponse, UsersRequest>(urlPostUsuario, userBodyRequest);
                  

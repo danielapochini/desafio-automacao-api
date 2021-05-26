@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DesafioAutomacaoAPI.Utils.Helpers
 {
-    public class EncodeHelper
+    public static class EncodeHelper
     {
         public static string Base64Encode(string plainText)
         {

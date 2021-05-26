@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DesafioAutomacaoAPI.Utils.Queries.Issues
 {
-    public class BugFileQueries
+    public static class BugFileQueries
     {
         public static BugFileEntities ListarUltimoArquivoCadastrado()
         {

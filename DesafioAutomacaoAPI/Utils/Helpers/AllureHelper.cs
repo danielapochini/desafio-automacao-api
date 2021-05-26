@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DesafioAutomacaoAPI.Utils.Helpers
 {
-    public class AllureHelper
+    public static class AllureHelper
     {
         public static void SetupAllure()
         {
@@ -34,7 +34,7 @@ namespace DesafioAutomacaoAPI.Utils.Helpers
                 if (!string.IsNullOrEmpty(response.Content))
                 {
                         Steps.Step("Body Response: " + response.Content);
-                }; 
+                }
             });
         }
     }

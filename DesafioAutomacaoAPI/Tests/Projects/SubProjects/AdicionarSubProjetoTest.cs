@@ -28,8 +28,7 @@ namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
         [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
         [AllureLink(linkDocumentacao)]
         public void AdicionarSubProjetoIdProjetoValido()
-        {
-            var subProjeto = ProjectsQueries.ListarInformacoesProjeto(5);
+        { 
             var projetoPai = ProjectsQueries.ListarInformacoesProjeto("Projeto Mantis API REST");
 
             string mensagemEsperada = $"Subproject '{subProjeto.Id}' added to project '{projetoPai.Id}'";

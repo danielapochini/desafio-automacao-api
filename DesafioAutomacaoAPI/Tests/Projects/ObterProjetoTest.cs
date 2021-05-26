@@ -67,8 +67,8 @@ namespace DesafioAutomacaoAPI.Tests.Projects
                 {
                     obterProjetoRequest.StatusCode.Should().Be(200);
                     obterProjetoRequest.StatusDescription.Should().Be("OK");
-                    obterProjetoRequest.Data.Projects.Should().Contain(x => x.Id == 1 && x.Name == "Projeto Mantis API REST" && x.Enabled == true);
-                    obterProjetoRequest.Data.Projects.Should().Contain(x => x.Id == 2 && x.Name == "Projeto Teste Mantis API REST" && x.Enabled == true);
+                    obterProjetoRequest.Data.Projects.Should().Contain(x => x.Id == 1 && x.Name == "Projeto Mantis API REST" && x.Enabled);
+                    obterProjetoRequest.Data.Projects.Should().Contain(x => x.Id == 2 && x.Name == "Projeto Teste Mantis API REST" && x.Enabled);
                 }
             });
 

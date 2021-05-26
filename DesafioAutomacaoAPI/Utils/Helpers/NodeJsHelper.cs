@@ -1,20 +1,15 @@
 ﻿using DesafioAutomacaoAPI.Utils.Settings;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesafioAutomacaoAPI
 {
-    public class NodeJsHelper
+    public static class NodeJsHelper
     {
         public static string RetornaDataAleatoriaEmTrintaDias()
-        {   
-            string node = @"C:\Program Files\nodejs\node.exe";  
-            string arquivoScript = "scriptDataAleatoria.js";  
+        {
+            string node = @"C:\Program Files\nodejs\node.exe";
+            string arquivoScript = "scriptDataAleatoria.js";
 
             string saida = ProcessNode.ExecutarProcesso(node, null, arquivoScript, DiretorioNode());
 
@@ -24,7 +19,7 @@ namespace DesafioAutomacaoAPI
         }
 
         public static string InstalarNodeModules()
-        {  
+        {
             return ProcessNode.ExecutarProcesso("cmd", "npm install", null, DiretorioNode());
         }
 
@@ -43,9 +38,8 @@ namespace DesafioAutomacaoAPI
 
         private static string DiretorioNode()
         {
-            string subpasta = @"Utils\Resources\NodeJS";  
+            string subpasta = @"Utils\Resources\NodeJS";
             return Path.Combine(Environment.CurrentDirectory, subpasta);
-        } 
-
+        }
     }
 }

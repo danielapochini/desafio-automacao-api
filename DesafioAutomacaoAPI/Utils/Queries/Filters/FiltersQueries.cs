@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DesafioAutomacaoAPI.Utils.Queries.Filters
 {
-    public class FiltersQueries
+    public static class FiltersQueries
     {
         public static FiltersEntities ListarUltimoFiltroCadastrado()
         {
