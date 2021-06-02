@@ -26,8 +26,9 @@ namespace DesafioAutomacaoAPI.Tests.Issues
         [AllureLink(linkDocumentacao)]
         public void ObterArquivosIssueIdValido()
         {
-            var obterInformacoesIssuesBD = BugFileQueries.ListarUltimoArquivoCadastrado();
+            var obterInformacoesIssuesBD = BugFileQueries.ListarArquivoCadastrado();
             string conteudoArquivoIssueConvertido = EncodeHelper.Base64Encode(obterInformacoesIssuesBD.Content);
+            
             int idIssue = obterInformacoesIssuesBD.BugId;
 
             string urlArquivoIssue = $"api/rest/issues/{idIssue}/files";
