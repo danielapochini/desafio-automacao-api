@@ -12,7 +12,12 @@ namespace DesafioAutomacaoAPI.Utils.Helpers
         {
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
             return System.Convert.ToBase64String(plainTextBytes);
-        } 
+        }
+
+        public static string Base64Encode(byte[] byteArray)
+        { 
+            return System.Convert.ToBase64String(byteArray);
+        }
 
         public static string Base64Decode(string base64EncodedData)
         {

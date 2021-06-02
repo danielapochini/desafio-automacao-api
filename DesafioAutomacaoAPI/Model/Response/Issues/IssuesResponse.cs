@@ -171,8 +171,23 @@ namespace DesafioAutomacaoAPI.Model.Response.Issues
         [JsonProperty("id")]
         public int Id { get; set; }
 
+        [JsonProperty("reporter")]
+        public Reporter Reporter { get; set; }
+
+        [JsonProperty("created_at")]
+        public DateTime CreatedAt { get; set; }
+
         [JsonProperty("filename")]
         public string Filename { get; set; }
+
+        [JsonProperty("size")]
+        public int Size { get; set; }
+
+        [JsonProperty("content_type")]
+        public string ContentType { get; set; }
+
+        [JsonProperty("content")]
+        public string Content { get; set; }
     }
 
     public partial class History
