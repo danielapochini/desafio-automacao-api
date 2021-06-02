@@ -22,7 +22,7 @@ namespace DesafioAutomacaoAPI.Tests.Issues
         [AllureDescription("Criação de usuários utilizando um arquivo .csv")]
         [AllureSuite(suiteProjeto), AllureSubSuite(subSuiteProjeto), AllureTag("Cenário de Sucesso")]
         [AllureLink(linkDocumentacao)]
-        public void CriarIssueDadosValidos(string summary, string description, string categoryName, string projectName)
+        public void CriarIssueDadosValidosDataDriven(string summary, string description, string categoryName, string projectName)
         {
 
             var issuesBodyRequest = new IssuesRequest
