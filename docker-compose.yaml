@@ -1,0 +1,40 @@
+version: '3.7' 
+services:
+  web: 
+    image: okainov/mantisbt:latest
+    container_name: mantis_web
+    ports:
+      - "8989:80"
+    environment:
+      - MANTIS_ENABLE_ADMIN=1
+      - MASTER_SALT=7kfoIR6X2g4saBvxo5fKyhHL5hPQV6Fwi5FHhlDCboBtHVNxjXwne/3T/kkCsAirwxFzGjY+bhFG1tKu7XnvcQ==
+      - EMAIL_WEBMASTER=webmaster@localhost
+      - EMAIL_FROM=webmaster@localhost
+      - EMAIL_RETURN_PATH=webmaster@localhost
+      # Uncomment only if modified from default values
+      #- MYSQL_HOST=db
+      #- MYSQL_DATABASE=bugtracker
+      #- MYSQL_USER=mantisadministrator
+      #- MYSQL_PASSWORD=mantis
+    volumes:
+        - ./config:/var/www/html/config
+        - ./custom:/var/www/html/custom
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mysql:5.7
+    container_name: mantis_db 
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db_data:/var/lib/mysql
+    environment:
+      # You might want to change root password before first run
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bugtracker
+      - MYSQL_USER=mantis
+      - MYSQL_PASSWORD=mantis
+    # Set default collation so Mantis does not complain about latin1
+    command: ['mysqld', '--character-set-server=latin1', '--collation-server=latin1_general_ci'] 

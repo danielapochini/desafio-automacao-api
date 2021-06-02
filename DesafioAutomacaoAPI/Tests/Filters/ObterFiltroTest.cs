@@ -36,7 +36,7 @@ namespace DesafioAutomacaoAPI.Tests.Filters
                 using (new AssertionScope())
                 {
                     obterFiltroRequest.StatusCode.Should().Be(200);
-                    obterFiltroRequest.Data.Filters.Should().Contain(x => x.Id == filtroId && x.Name == "Filtro Pesquisa" && x.Public == true);
+                    obterFiltroRequest.Data.Filters.Should().Contain(x => x.Id == filtroId && x.Name == "Filtro Pesquisa" && x.Public);
                     obterFiltroRequest.Data.Filters.Should().Contain(x => x.Project.Id == 0 && x.Project.Name == "All Projects");
                     obterFiltroRequest.Data.Filters.Should().Contain(x => x.Criteria.Status.Any(x => x.Id == 10 && x.Name == "new"));
                     obterFiltroRequest.Data.Filters.Should().Contain(x => x.Criteria.HideStatus.Id == 90 && x.Criteria.HideStatus.Name == "closed");
@@ -86,8 +86,8 @@ namespace DesafioAutomacaoAPI.Tests.Filters
                 using (new AssertionScope())
                 {
                     obterFiltroRequest.StatusCode.Should().Be(200);
-                    obterFiltroRequest.Data.Filters.Should().Contain(x => x.Id == 2 && x.Name == "Filtro Pesquisa" && x.Public == true);
-                    obterFiltroRequest.Data.Filters.Should().Contain(x => x.Id == 3 && x.Name == "Filtro Teste" && x.Public == false); 
+                    obterFiltroRequest.Data.Filters.Should().Contain(x => x.Id == 2 && x.Name == "Filtro Pesquisa" && x.Public);
+                    obterFiltroRequest.Data.Filters.Should().Contain(x => x.Id == 3 && x.Name == "Filtro Teste" && !x.Public); 
                 }
             });
 

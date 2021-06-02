@@ -15,9 +15,9 @@ namespace DesafioAutomacaoAPI.Tests.Config
         private const string subSuiteProjeto = "Obter Configurações do Sistema Test";
         private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#b09a8b9d-5466-48f7-89dc-4be7414d7059";
 
-        private const string valorOpcaoValido = "default_bug_priority";
-        private const string valorOpcaoPrivado = "crypto_master_salt";
-        private const string valorOpcaoInexistente = "does_not_exist";
+        private readonly string valorOpcaoValido = "default_bug_priority";
+        private readonly string valorOpcaoPrivado = "crypto_master_salt";
+        private readonly string valorOpcaoInexistente = "does_not_exist";
 
         private readonly RestManager restManager = new RestManager();
 

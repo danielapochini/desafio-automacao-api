@@ -8,11 +8,17 @@ using System.Threading.Tasks;
 
 namespace DesafioAutomacaoAPI.Utils.Queries.Issues
 {
-    public class BugFileQueries
+    public static class BugFileQueries
     {
         public static BugFileEntities ListarUltimoArquivoCadastrado()
         {
             var query = "SELECT * FROM mantis_bug_file_table ORDER BY ID DESC LIMIT 1";
+            return DatabaseHelper.ExecuteDbCommand<BugFileEntities>(query).FirstOrDefault();
+        }
+
+        public static BugFileEntities ListarArquivoCadastrado()
+        {
+            var query = "SELECT * FROM mantis_bug_file_table ORDER BY ID ASC LIMIT 1";
             return DatabaseHelper.ExecuteDbCommand<BugFileEntities>(query).FirstOrDefault();
         }
     }

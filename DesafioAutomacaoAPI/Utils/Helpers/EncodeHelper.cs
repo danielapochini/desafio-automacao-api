@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace DesafioAutomacaoAPI.Utils.Helpers
 {
-    public class EncodeHelper
+    public static class EncodeHelper
     {
         public static string Base64Encode(string plainText)
         {
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
             return System.Convert.ToBase64String(plainTextBytes);
-        } 
+        }
+
+        public static string Base64Encode(byte[] byteArray)
+        { 
+            return System.Convert.ToBase64String(byteArray);
+        }
 
         public static string Base64Decode(string base64EncodedData)
         {

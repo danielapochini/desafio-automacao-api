@@ -6,6 +6,8 @@
 		<IsPackable>false</IsPackable>
 
 		<Configurations>HML;DEV</Configurations>
+
+		<SonarQubeTestProject>True</SonarQubeTestProject>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'DEV'">

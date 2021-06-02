@@ -15,8 +15,8 @@ namespace DesafioAutomacaoAPI.Tests.Langs
         private const string subSuiteProjeto = "Obter String Localized Test";
         private const string linkDocumentacao = "https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#ddd095f8-0905-ae9d-268b-a24cddfa8740";
 
-        private const string parametroStringValido = "all_projects";
-        private const string parametroStringInvalido = "does_not_exist";
+        private readonly string parametroStringValido = "all_projects";
+        private readonly string parametroStringInvalido = "does_not_exist";
 
         private readonly RestManager restManager = new RestManager();
 

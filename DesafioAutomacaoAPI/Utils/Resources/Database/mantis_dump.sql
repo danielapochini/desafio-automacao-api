@@ -77,6 +77,8 @@ CREATE TABLE `mantis_bug_file_table` (
 
 LOCK TABLES `mantis_bug_file_table` WRITE;
 /*!40000 ALTER TABLE `mantis_bug_file_table` DISABLE KEYS */;
+INSERT INTO `mantis_bug_file_table` (`id`, `bug_id`, `title`, `description`, `diskfile`, `filename`, `folder`, `filesize`, `file_type`, `content`, `date_added`, `user_id`, `bugnote_id`) VALUES
+	(1, 1, '', '', '4c3d86a4ccf35cd84ca7efde127f149a', 'arquivoteste.txt', '', 18, 'text/plain; charset=us-ascii', _binary 0x4172717569766F2070617261207465737465, 1622056254, 1, NULL);
 /*!40000 ALTER TABLE `mantis_bug_file_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,6 +111,9 @@ CREATE TABLE `mantis_bug_history_table` (
 
 LOCK TABLES `mantis_bug_history_table` WRITE;
 /*!40000 ALTER TABLE `mantis_bug_history_table` DISABLE KEYS */;
+INSERT INTO `mantis_bug_history_table` (`id`, `user_id`, `bug_id`, `field_name`, `old_value`, `new_value`, `type`, `date_modified`) VALUES
+	(1, 1, 1, '', '', '', 1, 1622056254),
+	(2, 1, 1, '', 'arquivoteste.txt', '', 9, 1622056254);
 /*!40000 ALTER TABLE `mantis_bug_history_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,6 +249,8 @@ CREATE TABLE `mantis_bug_table` (
 
 LOCK TABLES `mantis_bug_table` WRITE;
 /*!40000 ALTER TABLE `mantis_bug_table` DISABLE KEYS */;
+INSERT INTO `mantis_bug_table` (`id`, `project_id`, `reporter_id`, `handler_id`, `duplicate_id`, `priority`, `severity`, `reproducibility`, `status`, `resolution`, `projection`, `eta`, `bug_text_id`, `os`, `os_build`, `platform`, `version`, `fixed_in_version`, `build`, `profile_id`, `view_state`, `summary`, `sponsorship_total`, `sticky`, `target_version`, `category_id`, `date_submitted`, `due_date`, `last_updated`) VALUES
+	(1, 2, 1, 0, 0, 30, 50, 70, 10, 10, 10, 10, 1, '', '', '', '', '', '', 0, 10, 'Teste issue com anexo', 0, 0, '', 1, 1622056254, 1, 1622056254);
 /*!40000 ALTER TABLE `mantis_bug_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,6 +302,8 @@ CREATE TABLE `mantis_bug_text_table` (
 
 LOCK TABLES `mantis_bug_text_table` WRITE;
 /*!40000 ALTER TABLE `mantis_bug_text_table` DISABLE KEYS */;
+INSERT INTO `mantis_bug_text_table` (`id`, `description`, `steps_to_reproduce`, `additional_information`) VALUES
+	(1, 'Esta issue possui um anexo em texto', '', '');
 /*!40000 ALTER TABLE `mantis_bug_text_table` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -9,20 +9,26 @@ using Xunit.Extensions.AssemblyFixture;
 namespace DesafioAutomacaoAPI.Base
 {
     public class TestBase : IDisposable
-    { 
+    {
         public TestBase()
-        { 
-            OneTimeSetUp(); 
+        {
+            OneTimeSetUp();
         }
 
         public static void OneTimeSetUp()
         {
             DatabaseHelper.ResetMantisDatabase();
-            NodeJsHelper.InstalarNodeModules(); 
+            NodeJsHelper.InstalarNodeModules();
             AllureHelper.SetupAllure();
         }
 
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             NodeJsHelper.LimparNodeModules();
         }

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesafioAutomacaoAPI.Utils.Settings
 {
-    public class ProcessNode
+    public static class ProcessNode
     { 
         public static string ExecutarProcesso(string arquivo, string comando, string argumento, string diretorio)
         { 

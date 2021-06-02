@@ -12,10 +12,7 @@ using System;
 using Xunit.Extensions.AssemblyFixture;
 
 namespace DesafioAutomacaoAPI.Tests.Projects.SubProjects
-{
-    // Update the subproject relationship properties.
-    // https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#f46c8545-b34a-b0f4-daa3-07fcadc81762
-
+{ 
     public class AtualizarSubProjetoTest : IAssemblyFixture<TestBase>
     {
         private const string suiteProjeto = "SubProjetos";

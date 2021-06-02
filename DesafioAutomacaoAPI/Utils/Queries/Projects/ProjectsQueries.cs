@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DesafioAutomacaoAPI.Utils.Queries.Projects
 {
-    public class ProjectsQueries
+    public static class ProjectsQueries
     {
         public static ProjectsEntities ListarInformacoesProjeto(int idProjeto)
         {

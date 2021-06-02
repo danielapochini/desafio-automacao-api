@@ -1,16 +1,11 @@
 ﻿using DesafioAutomacaoAPI.Utils.Settings;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DesafioAutomacaoAPI.Base
 {
-    public class RestManager 
+    public class RestManager
     {
         private readonly IRestClient RestClient = new RestClient();
 
@@ -21,31 +16,17 @@ namespace DesafioAutomacaoAPI.Base
             BasicJsonSerializerConfig();
             HeaderAuth();
         }
-         
 
         private void BasicJsonSerializerConfig()
-        { 
-            //utilizando nugget package de serializer json
+        {
             RestClient.UseNewtonsoftJson();
-
-            //setando a configuração do serializador json 
-            //para aceitar o modelo de nome dos campos sendo "snake_case"
-
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver
-                {
-                    NamingStrategy = new SnakeCaseNamingStrategy()
-                }
-            };
-             
         }
 
         private void HeaderAuth()
         {
             RestClient.AddDefaultHeader("Authorization", AppSettings.Token);
         }
-          
+
         private IRestRequest GetRestRequest(string uri, Method method)
         {
             Uri baseUrl = AppSettings.BaseUrl;
@@ -66,7 +47,7 @@ namespace DesafioAutomacaoAPI.Base
         {
             Uri baseUrl = AppSettings.BaseUrl;
             RestClient.BaseUrl = baseUrl;
-            
+
             var url = $"{RestClient.BaseUrl}{uri}";
 
             IRestRequest restRequest = new RestRequest()
@@ -89,9 +70,9 @@ namespace DesafioAutomacaoAPI.Base
             return restResponse;
         }
 
-        private IRestResponse<T> SendRequest<T>(IRestRequest restRequest) 
-        { 
-            IRestResponse<T> restResponse = RestClient.Execute<T>(restRequest); 
+        private IRestResponse<T> SendRequest<T>(IRestRequest restRequest)
+        {
+            IRestResponse<T> restResponse = RestClient.Execute<T>(restRequest);
             return restResponse;
         }
 
@@ -109,9 +90,9 @@ namespace DesafioAutomacaoAPI.Base
             return SendRequest<TResponse>(restRequest);
         }
 
-        public IRestResponse<TResponse> PerformGetRequest<TResponse>(string url) 
+        public IRestResponse<TResponse> PerformGetRequest<TResponse>(string url)
         {
-            var restRequest = GetRestRequest(url, Method.GET); 
+            var restRequest = GetRestRequest(url, Method.GET);
 
             return SendRequest<TResponse>(restRequest);
         }
@@ -139,7 +120,7 @@ namespace DesafioAutomacaoAPI.Base
 
         public IRestResponse<TResponse> PerformPostRequest<TResponse, TBody>(string url, TBody body)
         {
-            var restRequest = GetRestRequest(url, body, Method.POST); 
+            var restRequest = GetRestRequest(url, body, Method.POST);
 
             return SendRequest<TResponse>(restRequest);
         }

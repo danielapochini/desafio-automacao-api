@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace DesafioAutomacaoAPI.Utils.Helpers
 {
-    public class RegexHelper
+    public static class RegexHelper
     {
         //Pattern Email Valido HTML5 utilizado pelo MantisBT
         public static bool IsValidAddress(string emailAddress)

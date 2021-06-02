@@ -26,11 +26,11 @@ namespace DesafioAutomacaoAPI.Tests.Issues
         [AllureLink(linkDocumentacao)]
         public void CriarIssueUtilizandoAnexoBase64()
         { 
-            string textoEncode = EncodeHelper.Base64Encode("Arquivo para teste");
+            string textoEncode = EncodeHelper.Base64Encode("Desafio API RestSharp");
 
             var issuesBodyRequest = new IssuesRequest
             {
-                Summary = "Teste issue com anexo",
+                Summary = "Issue com anexo",
                 Description = "Esta issue possui um anexo em texto",
                 Project = new Model.Request.Issues.Project
                 {
@@ -44,7 +44,7 @@ namespace DesafioAutomacaoAPI.Tests.Issues
                 },
                 Files = new List<Model.Request.Issues.File>()
                 {
-                    new Model.Request.Issues.File { Name = "arquivoteste.txt" , Content = textoEncode}
+                    new Model.Request.Issues.File { Name = "desafioapi.txt" , Content = textoEncode}
                 }
             };
 
